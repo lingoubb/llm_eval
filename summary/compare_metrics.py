@@ -1,6 +1,11 @@
 from sklearn.feature_selection import mutual_info_regression
+from sklearn.neural_network import MLPClassifier
 import math
 from sklearn import tree
+import random
+
+def get_ans(f):
+    return max(enumerate(f), key=lambda x: x[1])[0]
 
 def inc(features, labels):
     size = len(features)
@@ -8,7 +13,7 @@ def inc(features, labels):
     predict_labels = []
     for i in range(size):
         feature = features[i]
-        j = max(enumerate(feature), key=lambda x: x[1])[0]
+        j = get_ans(feature)
         score = {0: 1, 1: -1, 2: 0}[j]
         predict_labels.append([score])
         if score == labels[i]:
@@ -21,10 +26,16 @@ def inc(features, labels):
 def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClassifier(criterion='gini', max_depth=3)):
     size = len(labels)
 
-    features = [[]] * size
+    features = []
     for i in range(size):
+        features.append([])
         for probs in metrics.values():
+            # features[i].append(get_ans(probs[i]))
             features[i] += probs[i]
+
+    # features = metrics['accuracy']
+    # print(features)
+    # print(labels[:size])
 
     cot = 0
     
@@ -34,18 +45,20 @@ def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClas
 
         test_x = features[i:end_i]
         test_y = labels[i:end_i]
-        train_x = features[:i] + features[end_i:]
-        train_y = labels[:i] + labels[end_i:]
+        train_x = features[:i] + features[end_i:size]
+        train_y = labels[:i] + labels[end_i:size]
 
-        print(train_x)
-        print(train_y)
         predict_model.fit(train_x, train_y)
         pred_y = predict_model.predict(test_x)
         
+        cot_t = 0
+
         for p, t in zip(pred_y, test_y):
             # print(p,t)
             if p == t:
-                cot += 1
+                cot_t += 1
+        # print(f'\tPred cot_t: {cot_t/(end_i-i):.3f}')
+        cot += cot_t
 
     print(f'\tPred cot: {cot/size:.3f}')
 
@@ -68,4 +81,5 @@ class Summary:
             metrics[metric] = probs
             print('-' * 20)
             
-        pred(metrics, labels)
+        pm = MLPClassifier(hidden_layer_sizes=(200,200,200), max_iter=2000)
+        pred(metrics, labels, predict_model=pm)

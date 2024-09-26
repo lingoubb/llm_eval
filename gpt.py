@@ -3,7 +3,7 @@ from model.openai_api import Model
 m = Model('https://api.chatanywhere.com.cn/v1', 'gpt-4', 'sk-H4tGHk14FwSHTxKOjVwYh5W0uKlilh28WjCYciGsAV4lNjhb')
 
 p = '''\
-详细介绍python sklearn mutual_info_regression参数和返回值的含义
+详细介绍 python sklearn MLPClassifier
 '''
 
 print(m.get_outputs([[

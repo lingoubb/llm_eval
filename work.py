@@ -28,8 +28,8 @@ for metric, mp in metrics.items():
         # 'gpt_3': gpt_3,
         'deepseek': deepseek,
     }.items():
-        datasets = load_result('dataset/arena_1000', f'output/arena_1000/{k}')
-        # datasets = load_result('dataset/pandalm', f'output/pandalm/{k}')
+        # datasets = load_result('dataset/arena_1000', f'output/arena_1000/{k}')
+        datasets = load_result('dataset/pandalm', f'output/pandalm/{k}')
         for dataset in datasets:
             gen_score(compare_probs.Judge(v.Model(), metric, header_v1.format(m=mp), prompt_user), dataset)
         print()
