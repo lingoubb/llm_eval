@@ -40,12 +40,14 @@ def gen_score(judge, dataset, t=16):
             for c in dataset:
                 if c['score'] is None:
                     fs.append((pool.submit(judge.get_score, c), c))
+                # fs.append((pool.submit(judge.get_score, c), c))
             for f, c in tqdm(fs, total=len(fs)):
                 try:
                     c['score'] = f.result()
                     c.set_err(None)
                 except Exception as e:
-                    print(e)
+                    import traceback
+                    traceback.print_exc()
                     c.set_err(str(e))
     finally:
         save_result(dataset)

@@ -15,11 +15,11 @@ class Judge(with_llm.Judge):
     def get_score(self, c):
         c.setdefault('metrics', {})
         if self.judge_name in c['metrics']:
-            return 0
+            return None
 
         prompt = [
             {"role": "system", "content": self.judge_head},
-            {"role": "user", "content": self.judge_prompt.format(**c)},
+            {"role": "user", "content": self.judge_prompt.format(**c, output_a=c['output'][0], output_b=c['output'][1])},
         ]
         
         r = self.model.get_outputs([prompt], logprobs=True, top_logprobs=20)[0]
@@ -29,13 +29,13 @@ class Judge(with_llm.Judge):
         for t in r.logprobs.content[0].top_logprobs:
             token = t.token.strip()
             for i in range(len(self.choice)):
-                c = self.choice[i]
-                if c == token:
+                choice = self.choice[i]
+                if choice == token:
                     probs[i] = t.logprob
                 if ret == 0:
                     ret = i + 1
         
         c['metrics'][self.judge_name] = probs
-        return ret
+        return None
 
         

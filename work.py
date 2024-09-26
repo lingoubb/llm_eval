@@ -16,10 +16,10 @@ prompt_user = '''\
 [User Question]
 {question}
 [The Start of Assistant A’s Answer]
-{answer_a}
+{output_a}
 [The End of Assistant A’s Answer]
 [The Start of Assistant B’s Answer]
-{answer_b}
+{output_b}
 [The End of Assistant B’s Answer]
 '''
 
@@ -29,7 +29,10 @@ for metric, mp in metrics.items():
         'deepseek': deepseek,
     }.items():
         datasets = load_result('dataset/arena_1000', f'output/arena_1000/{k}')
+        # datasets = load_result('dataset/pandalm', f'output/pandalm/{k}')
         for dataset in datasets:
             gen_score(compare_probs.Judge(v.Model(), metric, header_v1.format(m=mp), prompt_user), dataset)
-            summary.compare_metrics.Summary().print_summary(dataset)
         print()
+
+for dataset in datasets:
+    summary.compare_metrics.Summary().print_summary(dataset)

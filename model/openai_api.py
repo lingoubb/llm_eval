@@ -16,7 +16,6 @@ class Model:
 
 
     def get_outputs(self, inputs, temperature=0, max_tokens=1024, logprobs=False, **karg):
-        # print(inputs[0])
         outputs = []
         for a_input in inputs:
             response = self.client.chat.completions.create(  
