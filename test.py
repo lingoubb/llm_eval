@@ -9,7 +9,8 @@ for k, v in {
     'deepseek': deepseek,
 }.items():
     print(k)
-    datasets = load_result('dataset/arena_1000', f'output/arena_100/{k}')
+    datasets = load_result('dataset/pandalm', f'output/pandalm_baseline/{k}')
+    # datasets = load_result('dataset/arena_1000', f'output/arena_100/{k}')
     for dataset in datasets:
         gen_score(compare_judgelm.Judge(v.Model()), dataset)
         summary.compare.Summary().print_summary(dataset)
