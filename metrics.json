@@ -1,7 +1,7 @@
 {
-    "accuracy": "Please determine which assistant's answer is more helpful in solving the problem.",
-    "relevant": "Please determine which assistant's answer is more relevant to the question.",
-    "faithful": "Please determine which assistant's answer correctly answered the question and there were no factual errors.",
-    "detailed": "Please determine which assistant's answer is more detailed in relation to the question",
-    "redundant": "Please determine which assistant has less redundant information unrelated to the question in their answer"
+    "accuracy": "Please determine if the assistant's response is helpful in solving the problem.",
+    "relevant": "Please determine if the assistant's response is relevant to the question.",
+    "faithful": "Please determine if the assistant's response correctly answered the question and there were no factual errors.",
+    "detailed": "Please determine if the assistant's response is detailed in relation to the question",
+    "redundant": "Please determine if there is no redundant information unrelated to the question in the assistant's response."
 }
