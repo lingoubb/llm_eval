@@ -15,7 +15,8 @@ class Judge(with_llm.Judge):
 
     def get_score(self, case):
         case.setdefault('metrics', {})
-        if self.judge_name in case['metrics']:
+        case.setdefault('metrics_raw', {})
+        if self.judge_name in case['metrics'] and self.judge_name in case['metrics_raw']:
             return None
 
         prompt = [
@@ -25,6 +26,9 @@ class Judge(with_llm.Judge):
         
         r = self.model.get_outputs([prompt])[0]
         c = r.message.content
+
+        case['metrics_raw'][self.judge_name] = c
+
         beg = c.index('[[')
         if beg >= 0:
             end = c.index(']]')

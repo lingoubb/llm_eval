@@ -41,7 +41,54 @@ p = '''\
 请分析 AI 评分员与人类专家评分存在差异的可能原因
 '''.format(**case, ai_score=case['metrics']['accuracy'])
 
-print(m.get_outputs([[
+a = m.get_outputs([[
             {"role": "system", "content": "你是一个专家"},
             {"role": "user", "content": p},
-        ]])[0].message.content)
+        ]])[0].message.content
+
+print(a)
+print()
+
+p = f'''\
+以下是一个问答评分的评判标准: Please determine if the assistant's response is helpful in solving the problem.
+
+但它存在以下问题：{a}
+
+为了解决这个问题，请改写这个标准并直接输出（使用英文），不需要任何解释：
+'''
+
+a = m.get_outputs([[
+            {"role": "system", "content": "你是一个专家"},
+            {"role": "user", "content": p},
+        ]])[0].message.content
+
+print(a)
+print()
+
+
+header_scorer = f'''\
+Please act as an impartial judge and evaluate as requested the response provided by an AI assistant to the user question displayed below. Do not allow the length of the response to influence your evaluation. Be as objective as possible.
+{a} After providing your explanation, output your final verdict by strictly following this format:
+ "[[1]]" if the response is very bad (A completely invalid response. It would be difficult to recover the conversation after this.),
+ "[[2]]" if the response is bad (Valid response, but otherwise poor in quality),
+ "[[3]]" if the response is neutral (means this response is neither good nor bad. This response has no negative qualities, but no positive ones either.),
+ "[[4]]" if the response is good (means this is a good response, but falls short of being perfect because of a key flaw.),
+ "[[5]]" if the response is very good (means this response is good and does not have any strong flaws).  
+'''
+
+p = '''\
+[User Question]
+{question}
+[The Start of Assistant’s Answer]
+{output}
+[The End of Assistant’s Answer]
+'''.format(**case)
+
+
+a = m.get_outputs([[
+            {"role": "system", "content": header_scorer},
+            {"role": "user", "content": p},
+        ]])[0].message.content
+
+print(a)
+print()
