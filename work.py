@@ -4,7 +4,7 @@ from judge import compare_probs, judge_probs, conversation
 import summary.metrics_regression
 
 import json
-with open('metrics.json') as f:
+with open('metrics.json', encoding='utf-8') as f:
     metrics = json.loads(f.read())
 
 header_v1 = '''\
@@ -70,4 +70,4 @@ for metric, mp in metrics.items():
         print()
 
 for dataset in datasets:
-    summary.metrics_regression.Summary().print_summary(dataset, metric_names=metrics.keys())
+    summary.metrics_regression.Summary().print_summary(dataset, metric_names=[x for x in metrics.keys()])

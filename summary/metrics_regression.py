@@ -121,6 +121,6 @@ class Summary:
             metrics[metric] = probs
             print('-' * 20)
             
-        pm = MLPClassifier(hidden_layer_sizes=(200,200,200), max_iter=2000)
-        # pm = tree.DecisionTreeClassifier(criterion='gini', max_depth=3)
+        # pm = MLPClassifier(hidden_layer_sizes=(200,200,200,100), max_iter=2000)
+        pm = tree.DecisionTreeClassifier(criterion='gini', max_depth=4)
         pred(metrics, labels, predict_model=pm)

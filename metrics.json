@@ -3,5 +3,15 @@
     "relevant": "Please determine if the assistant's response is relevant to the question.",
     "faithful": "Please determine if the assistant's response correctly answered the question and there were no factual errors.",
     "detailed": "Please determine if the assistant's response is detailed in relation to the question",
-    "redundant": "Please determine if there is no redundant information unrelated to the question in the assistant's response."
+    "redundant": "Please determine if there is no redundant information unrelated to the question in the assistant's response.",
+    "gen_1_0": "Relevance and Directness: Assess whether the assistant's response directly addresses the user's query or maintains contextual relevance to the ongoing conversation.",
+    "gen_1_1": "Information Depth and Utility: Evaluate the response for its depth of information and practical utility, ensuring it provides meaningful insights or solves the user's problem.",
+    "gen_1_2": "Dialogue Coherence and Flow: Determine if the response maintains a logical and natural flow within the conversation, contributing to its coherence and engagement.",
+    "gen_1_3": "User Engagement and Interest: Consider whether the response not only addresses the immediate query but also broadens the user's interests or enhances their conversational experience.",
+    "gen_1_4": "Accuracy and Clarity: Assess the response for factual accuracy and clarity, ensuring it avoids misleading information and communicates effectively.",
+    "gen_1_5": "Flexibility and Adaptability: Allow for some flexibility in scoring to account for the broader context of the conversation, including tangential but relevant information that enriches the dialogue.",
+    "gen_1_6": "Creativity and Novelty: Evaluate the response for its creativity and novelty, considering whether it introduces new perspectives or engaging content that enhances the conversation.",
+    "gen_1_7": "Emotional and Social Engagement: Consider the emotional tone and social dynamics of the response, ensuring it maintains a positive and engaging interaction.",
+    "gen_1_8": "Problem-Solving Effectiveness: Rate the response based on its direct contribution to solving the user's problem, while also considering its relevance and informational value.",
+    "gen_1_9": "Contextual Understanding and Alignment: Assess the response's alignment with the user's broader intentions and the specific context of the conversation, ensuring it captures and enhances the dialogue's purpose."
 }
