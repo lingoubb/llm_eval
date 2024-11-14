@@ -49,6 +49,9 @@ def gen_score(judge, dataset, t=16):
                     import traceback
                     traceback.print_exc()
                     c.set_err(str(e))
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
     finally:
         save_result(dataset)
 

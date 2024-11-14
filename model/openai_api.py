@@ -1,10 +1,11 @@
 import os
 
 class Model:
-    def __init__(self, url, model, key=os.environ.get('OPENAI_API_KEY')):
+    def __init__(self, url, model, key=os.environ.get('OPENAI_API_KEY'), kargs={}):
         from openai import OpenAI
         self.model = model
-        self.client = OpenAI(api_key=key, base_url=url)  
+        self.client = OpenAI(api_key=key, base_url=url) 
+        self.kargs = kargs 
 
 
     def __enter__(self):
@@ -18,19 +19,17 @@ class Model:
     def get_outputs(self, inputs, temperature=0, max_tokens=1024, logprobs=False, **karg):
         outputs = []
         for a_input in inputs:
-            response = self.client.chat.completions.create(  
-                model=self.model,
-                logprobs=logprobs,
-                messages=a_input,
-                # messages=[
-                #     {"role": "system", "content": init},
-                #     {"role": "user", "content": a_input},
-                # ],
-                temperature=temperature,
-                stream=False,
-                max_tokens=max_tokens,
-                **karg
-            )
+            data = {
+                "model": self.model,
+                "logprobs": logprobs,
+                "messages": a_input,
+                "temperature": temperature,
+                "stream": False,
+                "max_tokens": max_tokens,
+                **self.kargs,
+                **karg,
+            }
+            response = self.client.chat.completions.create(**data)
             outputs.append(response.choices[0])
             # outputs.append(response.choices[0].message.content)
         # if logprobs:

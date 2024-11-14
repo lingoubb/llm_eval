@@ -49,7 +49,6 @@ prompt_user_scorer = '''\
 [The End of Assistant’s Answer]
 '''
 
-
 header = header_scorer
 
 # af_metrics = {}
@@ -57,6 +56,9 @@ header = header_scorer
 #     af_metrics["header_scorer_v2_" + metric] = mp
 # metrics = af_metrics
 # header = header_scorer_v2
+# 
+# metrics = {k: v for k, v in metrics.items() if not k.startswith('gen')}
+
 
 for metric, mp in metrics.items():
     for k, v in {
