@@ -1,0 +1,4 @@
+2024-12-31 00:10:24 | INFO | gradio_web_server_multi | args: Namespace(host='0.0.0.0', port=None, share=False, controller_url='http://localhost:21001', concurrency_count=10, model_list_mode='once', moderate=False, show_terms_of_use=False, multimodal=False, register_api_endpoint_file='/workspace/fschat/api_endpoint.json', gradio_auth_path=None, elo_results_file=None, leaderboard_table_file=None, gradio_root_path=None, ga_id=None)
+2024-12-31 00:10:40 | INFO | gradio_web_server_multi | load_demo. ip: 127.0.0.1. params: {}
+2024-12-31 00:10:55 | INFO | gradio_web_server_multi | add_text (anony). ip: 127.0.0.1. len: 3
+2024-12-31 00:10:55 | INFO | gradio_web_server_multi | bot_response_multi (anony). ip: 127.0.0.1

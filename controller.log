@@ -1,0 +1,4 @@
+2025-01-03 12:46:25 | ERROR | stderr | [32mINFO[0m:     Shutting down
+2025-01-03 12:46:25 | ERROR | stderr | [32mINFO[0m:     Waiting for application shutdown.
+2025-01-03 12:46:25 | ERROR | stderr | [32mINFO[0m:     Application shutdown complete.
+2025-01-03 12:46:25 | ERROR | stderr | [32mINFO[0m:     Finished server process [[36m72728[0m]

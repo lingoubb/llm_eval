@@ -64,3 +64,11 @@ print()
 
 for dataset in datasets:
     summary.metrics_regression.Summary().print_summary(dataset, metric_names=["network2_2_" + x for x in metrics.keys()])
+
+
+'''
+涉及的事实
+存在的矛盾
+问题的需求
+
+'''

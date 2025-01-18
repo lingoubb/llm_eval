@@ -1,0 +1,35 @@
+2024-12-31 00:05:48 | ERROR | stderr | Traceback (most recent call last):
+2024-12-31 00:05:48 | ERROR | stderr |   File "<frozen runpy>", line 198, in _run_module_as_main
+2024-12-31 00:05:48 | ERROR | stderr |   File "<frozen runpy>", line 88, in _run_code
+2024-12-31 00:05:48 | ERROR | stderr |   File "D:\miniconda3\envs\uni\Lib\site-packages\fastchat\serve\gradio_web_server_multi.py", line 34, in <module>
+2024-12-31 00:05:48 | ERROR | stderr |     from fastchat.serve.monitor.monitor import build_leaderboard_tab
+2024-12-31 00:05:48 | ERROR | stderr |   File "D:\miniconda3\envs\uni\Lib\site-packages\fastchat\serve\monitor\monitor.py", line 21, in <module>
+2024-12-31 00:05:48 | ERROR | stderr |     from fastchat.serve.monitor.basic_stats import report_basic_stats, get_log_files
+2024-12-31 00:05:48 | ERROR | stderr |   File "D:\miniconda3\envs\uni\Lib\site-packages\fastchat\serve\monitor\basic_stats.py", line 10, in <module>
+2024-12-31 00:05:48 | ERROR | stderr |     import plotly.express as px
+2024-12-31 00:05:48 | ERROR | stderr | ModuleNotFoundError: No module named 'plotly'
+2024-12-31 00:10:24 | INFO | gradio_web_server | All models: ['deepseek_1', 'deepseek_2']
+2024-12-31 00:10:24 | INFO | gradio_web_server | Visible models: ['deepseek_1', 'deepseek_2']
+2024-12-31 00:10:24 | INFO | gradio_web_server | All models: []
+2024-12-31 00:10:24 | INFO | gradio_web_server | Visible models: []
+2024-12-31 00:10:24 | ERROR | stderr | D:\miniconda3\envs\uni\Lib\site-packages\gradio\components\chatbot.py:242: UserWarning: You have not specified a value for the `type` parameter. Defaulting to the 'tuples' format for chatbot messages, but this is deprecated and will be removed in a future version of Gradio. Please set type='messages' instead, which uses openai-style dictionaries with 'role' and 'content' keys.
+2024-12-31 00:10:24 | ERROR | stderr |   warnings.warn(
+2024-12-31 00:10:24 | ERROR | stderr | D:\miniconda3\envs\uni\Lib\site-packages\gradio\components\dropdown.py:226: UserWarning: The value passed into gr.Dropdown() is not in the list of choices. Please update the list of choices to include:  or set allow_custom_value=True.
+2024-12-31 00:10:24 | ERROR | stderr |   warnings.warn(
+2024-12-31 00:10:24 | INFO | stdout | * Running on local URL:  http://0.0.0.0:7860
+2024-12-31 00:10:25 | INFO | stdout | 
+2024-12-31 00:10:25 | INFO | stdout | To create a public link, set `share=True` in `launch()`.
+2024-12-31 00:10:40 | ERROR | stderr | D:\miniconda3\envs\uni\Lib\site-packages\gradio\components\dropdown.py:226: UserWarning: The value passed into gr.Dropdown() is not in the list of choices. Please update the list of choices to include:  or set allow_custom_value=True.
+2024-12-31 00:10:40 | ERROR | stderr |   warnings.warn(
+2024-12-31 00:10:55 | ERROR | stderr | D:\miniconda3\envs\uni\Lib\site-packages\gradio\blocks.py:1780: UserWarning: A function (add_text) returned too many output values (needed: 11, returned: 12). Ignoring extra values.
+2024-12-31 00:10:55 | ERROR | stderr |     Output components:
+2024-12-31 00:10:55 | ERROR | stderr |         [state, state, chatbot, chatbot, textbox, button, button, button, button, button, button]
+2024-12-31 00:10:55 | ERROR | stderr |     Output values returned:
+2024-12-31 00:10:55 | ERROR | stderr |         [<fastchat.serve.gradio_web_server.State object at 0x000001DF984763F0>, <fastchat.serve.gradio_web_server.State object at 0x000001DF98477590>, [['你是谁', None]], [['你是谁', None]], "", <gradio.components.button.Button object at 0x000001DF94E4BD70>, <gradio.components.button.Button object at 0x000001DF94E4BD70>, <gradio.components.button.Button object at 0x000001DF94E4BD70>, <gradio.components.button.Button object at 0x000001DF94E4BD70>, <gradio.components.button.Button object at 0x000001DF94E4BD70>, <gradio.components.button.Button object at 0x000001DF94E4BD70>, ""]
+2024-12-31 00:10:55 | ERROR | stderr |   warnings.warn(
+2024-12-31 00:10:55 | INFO | gradio_web_server | bot_response. ip: 127.0.0.1
+2024-12-31 00:10:55 | INFO | gradio_web_server | bot_response. ip: 127.0.0.1
+2024-12-31 00:10:56 | INFO | gradio_web_server | ==== request ====
+{'model': 'deepseek-chat', 'prompt': [{'role': 'system', 'content': "A chat between a curious human and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the human's questions."}, {'role': 'user', 'content': '你是谁'}], 'temperature': 0.7, 'top_p': 1.0, 'max_new_tokens': 1024}
+2024-12-31 00:10:57 | INFO | gradio_web_server | ==== request ====
+{'model': 'deepseek-chat', 'prompt': [{'role': 'system', 'content': "A chat between a curious human and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the human's questions."}, {'role': 'user', 'content': '你是谁'}], 'temperature': 0.7, 'top_p': 1.0, 'max_new_tokens': 1024}

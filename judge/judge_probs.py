@@ -22,7 +22,7 @@ class Judge(with_llm.Judge):
             {"role": "user", "content": self.judge_prompt.format(**c)},
         ]
         
-        r = self.model.get_outputs([prompt], logprobs=True, top_logprobs=20)[0]
+        r = self.model.get_outputs([prompt], logprobs=True, kargs={'top_logprobs': 20})[0]
 
         probs = [0] * len(self.choice)
         ret = 0

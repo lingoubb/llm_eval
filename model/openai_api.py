@@ -16,7 +16,7 @@ class Model:
         pass
 
 
-    def get_outputs(self, inputs, temperature=0, max_tokens=1024, logprobs=False, **karg):
+    def get_outputs(self, inputs, temperature=0, max_tokens=1024, logprobs=False, text=False, kargs={}):
         outputs = []
         for a_input in inputs:
             data = {
@@ -27,11 +27,13 @@ class Model:
                 "stream": False,
                 "max_tokens": max_tokens,
                 **self.kargs,
-                **karg,
+                **kargs,
             }
             response = self.client.chat.completions.create(**data)
-            outputs.append(response.choices[0])
-            # outputs.append(response.choices[0].message.content)
+            if text:
+                outputs.append(response.choices[0].message.content)
+            else:
+                outputs.append(response.choices[0])
         # if logprobs:
         #     return outputs, [x.top_logprobs for x in response.choices[0].logprobs.content]
         # else:

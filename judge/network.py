@@ -50,10 +50,15 @@ class Cell:
 
     def forward(self, case, all_score):
 
-        prompt = [
-            {"role": "system", "content": self.system_prompt},
-            {"role": "user", "content": self.fill_prompt(case, all_score)},
-        ]
+        if self.fill_prompt:
+            prompt = [
+                {"role": "system", "content": self.system_prompt},
+                {"role": "user", "content": self.fill_prompt(case, all_score)},
+            ]
+        else:
+            prompt = [
+                {"role": "system", "content": self.system_prompt},
+            ]
         r = self.model.get_outputs([prompt])[0]
         c = r.message.content
 

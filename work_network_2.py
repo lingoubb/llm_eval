@@ -33,19 +33,19 @@ user_prompt_wo = '''\
 
 layer1 = []
 
-system_prompt = "You will receive a question and an assistant's answer to that question. What do you think are the drawbacks of that answer? If you're not sure if there are any drawbacks in the answer, please reply {NO}."
+system_prompt = "You will receive a question and an assistant's answer to that question. What do you think are the drawbacks of that answer? If you're not sure if there are any drawbacks in the answer, please reply {NO} (Try not to do this as much as possible)."
 layer1.append(network.Cell(deepseek.Model(kargs={'temperature': 0}), name=f"network3_1_0", system_prompt=system_prompt, fill_prompt=lambda case, all_score: user_prompt.format(**case)))
               
-system_prompt = "You will receive a question and an assistant's answer to that question. What do you think are the merits of that answer? If you're not sure if there are any merits in the answer, please reply {NO}."
+system_prompt = "You will receive a question and an assistant's answer to that question. What do you think are the merits of that answer? If you're not sure if there are any merits in the answer, please reply {NO} (Try not to do this as much as possible)."
 layer1.append(network.Cell(deepseek.Model(kargs={'temperature': 0}), name=f"network3_1_1", system_prompt=system_prompt, fill_prompt=lambda case, all_score: user_prompt.format(**case)))
               
-system_prompt = "You will receive a question and an assistant's answer to that question. What do you think are the aspects where the answer contradicts the facts? If you're not sure whether there is a contradiction with the facts, please reply {NO}."
+system_prompt = "You will receive a question and an assistant's answer to that question. What do you think are the aspects where the answer contradicts the facts? If you're not sure whether there is a contradiction with the facts, please reply {NO} (Try not to do this as much as possible)."
 layer1.append(network.Cell(deepseek.Model(kargs={'temperature': 0}), name=f"network3_1_2", system_prompt=system_prompt, fill_prompt=lambda case, all_score: user_prompt.format(**case)))
               
-system_prompt = "You will receive a question. You don't actually need to answer this question, but you are required to point out the train of thought for answering it. If you think there isn't a definite train of thought, please reply {NO}."
+system_prompt = "You will receive a question. You don't actually need to answer this question, but you are required to point out the train of thought for answering it. If you think there isn't a definite train of thought, please reply {NO} (Try not to do this as much as possible)."
 layer1.append(network.Cell(deepseek.Model(kargs={'temperature': 0}), name=f"network3_1_3", system_prompt=system_prompt, fill_prompt=lambda case, all_score: user_prompt_wo.format(**case)))
               
-system_prompt = "You will receive a question. You don't actually need to answer this question, but you are required to point out some factual bases that need to be known in order to answer it. If you think there are no facts that must be known, please reply {NO}."
+system_prompt = "You will receive a question. You don't actually need to answer this question, but you are required to point out some factual bases that need to be known in order to answer it. If you think there are no facts that must be known, please reply {NO} (Try not to do this as much as possible)."
 layer1.append(network.Cell(deepseek.Model(kargs={'temperature': 0}), name=f"network3_1_4", system_prompt=system_prompt, fill_prompt=lambda case, all_score: user_prompt_wo.format(**case)))
               
 # layer2
@@ -71,12 +71,14 @@ user_prompt_s = '''\
 
 layer2 = []
 for metric, mp in metrics.items():
+    # layer2.append(network.Cell(deepseek.Model(), name="network3_2_" + metric, system_prompt=system_prompt.format(m=mp), fill_prompt=lambda case, all_score: user_prompt.format(**case), deal_with_score=pick_score))
+
     layer2.append(network.Cell(deepseek.Model(), name="network3_2_" + metric, system_prompt=system_prompt.format(m=mp), fill_prompt=lambda case, all_score: user_prompt_s.format(**case, suggestions='\n'.join([x for x in all_score[-1] if '{NO}' not in x])), deal_with_score=pick_score))
 
 judge = network.Judge([
     layer1,
     layer2
-], overwrite=True)
+], overwrite=False)
 
 
 datasets = load_result('dataset/topical-chat', f'output/topical-chat/deepseek')
@@ -85,7 +87,7 @@ for dataset in datasets:
 print()
 
 for dataset in datasets:
-    summary.metrics_regression.Summary().print_summary(dataset, metric_names=["network2_2_" + x for x in metrics.keys()])
+    summary.metrics_regression.Summary().print_summary(dataset, metric_names=["network3_2_" + x for x in metrics.keys()])
 
 
 '''

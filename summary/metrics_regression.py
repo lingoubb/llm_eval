@@ -10,6 +10,9 @@ def get_ans(f):
     return max(enumerate(f), key=lambda x: x[1])[0]
 
 def inc(features, labels):
+    
+    if not isinstance(features[0][0], int):
+        return
 
     size = len(features)
     cot = 0
@@ -31,14 +34,14 @@ def inc(features, labels):
             cot += 1
         if deta <= 1:
             in_1 += 1
-    print(features == predict_labels)
+    # print(features == predict_labels)
     print(f'\tcorret: {cot/size:.3f}')
     print(f'\tdeta<=1: {in_1/size:.3f}')
     print(f'\tMAE: {total_deta/size:.3f}')
-    print(f'\tspearmanr: {spearmanr([x[0] for x in predict_labels], labels)[0]}')
-    print(f'\tkendalltau: {kendalltau([x[0] for x in predict_labels], labels)[0]}')
     print(f'\tfeatures mutual info: {mutual_info_regression(features, labels, discrete_features=False)}')
     print(f'\tmutual info: {mutual_info_regression(predict_labels, labels, discrete_features=False)}')
+    print(f'\tspearmanr: {spearmanr([x[0] for x in predict_labels], labels)[0]}')
+    print(f'\tkendalltau: {kendalltau([x[0] for x in predict_labels], labels)[0]}')
 
 
 def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClassifier(criterion='gini', max_depth=3)):
@@ -92,16 +95,17 @@ def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClas
         cot += cot_t
 
     print(f'\tPred cot: {cot/size:.3f}')
-    print(f'\tPred MAE: {total_deta/size:.3f}')
     print(f'\tPred deta<=1: {in_1/size:.3f}')
+    print(f'\tPred MAE: {total_deta/size:.3f}')
     print(f'\tPred spearmanr: {sum(spearmanr_list)/len(spearmanr_list):.3f}')
     print(f'\tPred kendalltau: {sum(kendalltau_list)/len(kendalltau_list):.3f}')
 
 class Summary:
-    def print_summary(self, dataset, metric_names=None):
+    def print_summary(self, dataset, metric_names=None, feature_names=[]):
         dataset = dataset.content
         if metric_names is None:
             metric_names = dataset[0]['metrics'].keys()
+
         metrics = {}
 
         labels = []
@@ -113,6 +117,19 @@ class Summary:
             probs = []
             for x in dataset:
                 v = x['metrics'][metric]
+                if not isinstance(v, str) and isinstance(v, Iterable):
+                    probs.append(v)
+                else:
+                    probs.append([v])
+            inc(probs, labels)
+            metrics[metric] = probs
+            print('-' * 20)
+
+        for metric in feature_names:
+            print(metric)
+            probs = []
+            for x in dataset:
+                v = x['features'][metric]
                 if isinstance(v, Iterable):
                     probs.append(v)
                 else:
@@ -122,5 +139,6 @@ class Summary:
             print('-' * 20)
             
         # pm = MLPClassifier(hidden_layer_sizes=(200,200,200,100), max_iter=2000)
-        pm = tree.DecisionTreeClassifier(criterion='gini', max_depth=4)
-        pred(metrics, labels, predict_model=pm)
+        if len(metrics) > 1:
+            pm = tree.DecisionTreeClassifier(criterion='gini', max_depth=4)
+            pred(metrics, labels, predict_model=pm)

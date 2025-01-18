@@ -33,12 +33,16 @@ def gen_output(prompt, dataset, model, t=16):
         save_result(dataset)
 
 
-def gen_score(judge, dataset, t=16):
+def gen_score(judge, dataset, t=16, num=None):
     try:
         with ThreadPoolExecutor(max_workers=t) as pool:
             fs = []
+            num_t = 0
             for c in dataset:
-                if c['score'] is None:
+                if num is not None and num_t >= num:
+                    break
+                num_t += 1
+                if 'score' not in c or c['score'] is None:
                     fs.append((pool.submit(judge.get_score, c), c))
                 # fs.append((pool.submit(judge.get_score, c), c))
             for f, c in tqdm(fs, total=len(fs)):
