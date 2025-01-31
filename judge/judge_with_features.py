@@ -39,6 +39,7 @@ prompt_user = '''\
 '''
 
 from . import with_llm
+import sys
 
 """
 主观题评测
@@ -265,7 +266,8 @@ class Judge(with_llm.Judge):
                     r = s 
                     break
             if r is None:
-                raise Exception(f'模型输出格式错误: {output}')
+                print(f'模型输出格式错误: {output}', file=sys.stderr)
+                # raise Exception(f'模型输出格式错误: {output}')
             c['metrics']['baseline'] = r
 
         if 'baseline_wo_tie' not in c['metrics'] or c['metrics']['baseline_wo_tie'] is None:
@@ -283,7 +285,7 @@ class Judge(with_llm.Judge):
                     r = s 
                     break
             if r is None:
-                raise Exception(f'模型输出格式错误: {output}')
+                print(f'模型输出格式错误: {output}', file=sys.stderr)
             c['metrics']['baseline_wo_tie'] = r
 
 #         if 'with_判题依据' not in c['metrics'] or c['metrics']['with_判题依据'] is None:

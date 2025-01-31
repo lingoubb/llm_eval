@@ -1,10 +1,15 @@
 from sklearn.feature_selection import mutual_info_regression
 from sklearn.neural_network import MLPClassifier
 from scipy.stats import spearmanr, kendalltau
+from sklearn.impute import SimpleImputer
 import math
 from sklearn import tree
 from collections.abc import Iterable
 import random
+from collections import Counter
+import numpy as np
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_selection import RFE
 
 def get_ans(f):
     return max(enumerate(f), key=lambda x: x[1])[0]
@@ -14,18 +19,26 @@ def inc(features, labels):
     if not isinstance(features[0][0], int):
         return
 
-    size = len(features)
+    total_size = len(features)
+    size = total_size
     cot = 0
     in_1 = 0
     total_deta = 0
     predict_labels = []
-    for i in range(size):
-        feature = features[i]
+    
 
+    for i in range(total_size):
+        feature = features[i]
+    
         # # probs
         # j = get_ans(feature)
         # score = {0: 1, 1: -1, 2: 0}[j]
         score = feature[0]
+
+        # 空值
+        if score is None:
+            size -= 1
+            continue
 
         predict_labels.append([score])
         deta = abs(score - labels[i])
@@ -46,6 +59,7 @@ def inc(features, labels):
 
 def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClassifier(criterion='gini', max_depth=3)):
     size = len(labels)
+    batch_size = math.ceil(batch_percent * size)
 
     features = []
     for i in range(size):
@@ -57,16 +71,15 @@ def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClas
     # features = metrics['accuracy']
     # print(features)
     # print(labels[:size])
-
     cot = 0
     total_deta = 0
     in_1 = 0
 
     spearmanr_list = []
     kendalltau_list = []
+    feature_importances_list = []
 
     
-    batch_size = math.ceil(batch_percent * size)
     for i in range(0, size, batch_size):
         end_i = min(i + batch_size, size)
 
@@ -74,8 +87,17 @@ def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClas
         test_y = labels[i:end_i]
         train_x = features[:i] + features[end_i:size]
         train_y = labels[:i] + labels[end_i:size]
+        
+        # predict_model=tree.DecisionTreeClassifier(criterion='gini', max_depth=3)
+        predict_model = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42)
+        predict_model = RFE(predict_model, n_features_to_select=8, step=1)
 
         predict_model.fit(train_x, train_y)
+
+        print(predict_model.ranking_)
+        # feature_importances = predict_model.feature_importances_
+        # feature_importances_list.append(feature_importances)
+        
         pred_y = predict_model.predict(test_x)
         
         cot_t = 0
@@ -94,11 +116,29 @@ def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClas
         # print(f'\tPred cot_t: {cot_t/(end_i-i):.3f}')
         cot += cot_t
 
+
+    # print(feature_importances_list)
+    # print(zip(*feature_importances_list))
+    # feature_importances = [(sum(x)/len(x)) for x in zip(*feature_importances_list)]
+
     print(f'\tPred cot: {cot/size:.3f}')
     print(f'\tPred deta<=1: {in_1/size:.3f}')
     print(f'\tPred MAE: {total_deta/size:.3f}')
     print(f'\tPred spearmanr: {sum(spearmanr_list)/len(spearmanr_list):.3f}')
     print(f'\tPred kendalltau: {sum(kendalltau_list)/len(kendalltau_list):.3f}')
+    print(f'\tPred feature importances: {feature_importances}')
+
+
+    # i, _ = min(enumerate(feature_importances), key=lambda x: x[1])
+    # print(f'remove {i}')
+    # features = [x[:i] + x[i+1:] for x in features]
+
+
+def deal_none(probs):
+    c = Counter([x[0] for x in probs])
+    del c[None]
+    z = c.most_common(1)[0][0]
+    return [[z] if x[0] is None else x for x in probs]
 
 class Summary:
     def print_summary(self, dataset, metric_names=None, feature_names=[]):
@@ -121,6 +161,10 @@ class Summary:
                     probs.append(v)
                 else:
                     probs.append([v])
+
+            # 处理空值
+            probs = deal_none(probs)
+
             inc(probs, labels)
             metrics[metric] = probs
             print('-' * 20)
@@ -134,6 +178,10 @@ class Summary:
                     probs.append(v)
                 else:
                     probs.append([v])
+
+            # 处理空值
+            probs = deal_none(probs)
+
             inc(probs, labels)
             metrics[metric] = probs
             print('-' * 20)

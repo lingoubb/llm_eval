@@ -8,7 +8,9 @@ from scipy.stats import spearmanr, kendalltau
 import math
 from sklearn import tree
 from collections.abc import Iterable
+from sklearn.feature_selection import RFE
 import random
+import sys
 
 model_gpt3 = gpt_3.Model()
 model_deepseek = deepseek.Model()
@@ -23,9 +25,11 @@ init_metrics = [
     '助手的回答不存在繁琐重复的内容',
     '助手的回答中提到的信息不存在与事实不符的信息或编造的信息',
     '评估时，先指出问题中是否存在关于回答格式、回答要求、角色扮演等的指令，然后判断助手的回答是否严格遵循了这些指令',
+    'The assistant\'s answer can effectively solve the problem',
+    'When evaluating, first indicate whether there are instructions regarding answer format, answer requirements, role-playing, etc. in the question, and then determine whether the assistant\'s answer strictly follows these instructions',
+    'The assistant\'s answer is related to the question, and isn\'t irrelevant to the question'
 ]
 
-'助手的回答严格遵循了问题中关于回答格式、回答要求、角色扮演等的指令'
 # 特点
 init_features = [
     '问题中是否存在关于回答格式、回答要求、角色扮演等的指令',
@@ -57,7 +61,7 @@ def get_feature(feature):
                 r = s 
                 break
         if r is None:
-            raise Exception(f'模型输出格式错误: {output}')
+            print(f'模型输出格式错误: {output}', file=sys.stderr)
         return r
     return f
 
@@ -127,7 +131,7 @@ def get_m(metric):
                 r = s 
                 break
         if r is None:
-            raise Exception(f'模型输出格式错误: {output}')
+            print(f'模型输出格式错误: {output}', file=sys.stderr)
         return r
     return baseline
 
@@ -188,7 +192,7 @@ def d_f(question, better, worse, origin_score):
             r = s 
             break
     if r is None:
-        print(f'模型输出格式错误: {output}')
+        print(f'模型输出格式错误: {output}', file=sys.stderr)
     elif r != origin_score:
         print('有效')
         return new_m
