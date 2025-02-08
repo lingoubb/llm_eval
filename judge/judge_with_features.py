@@ -167,7 +167,7 @@ class Judge(with_llm.Judge):
 #             c['features']['正反辩论'].append(output)
 
 #             p = '''\
-# 以下是一个问题和两个 ai 助手给出的回答，人类评估者认为助手 A 和助手 B 的回答都很好地回答了该问题且不相上下，请指出你认为人类评估者可能是基于什么原因给出这样的判断。你只能给出一个原因，请挑选最关键的原因。
+# 以下是一个问题和两个 ai 助手给出的回答，人类评估者认为助手 A 和助手 B 的回答都很好地回答了该问题且 不相上下，请指出你认为人类评估者可能是基于什么原因给出这样的判断。你只能给出一个原因，请挑选最关键的原因。
 # [问题开始]
 # {question}
 # [问题结束]
@@ -251,42 +251,42 @@ class Judge(with_llm.Judge):
 #                 raise Exception(f'模型输出格式错误: {output}')
 #             c['features']['位置互换'] = r
 
-        if 'baseline' not in c['metrics'] or c['metrics']['baseline'] is None:
-            i = [
-                {"role": "system", "content": prompt_system},
-                {"role": "user", "content": prompt_user.format(question=c['question'], answer_a=c['output'][0], answer_b=c['output'][1])},
-            ]
-            output = self.model.get_outputs([i], max_tokens=1600)[0].message.content
-            score_map = {
-                '[[A]]': 1, '[[B]]': -1, '[[C]]': 0
-            }
-            r = None
-            for k, s in score_map.items():
-                if k in output:
-                    r = s 
-                    break
-            if r is None:
-                print(f'模型输出格式错误: {output}', file=sys.stderr)
-                # raise Exception(f'模型输出格式错误: {output}')
-            c['metrics']['baseline'] = r
+        # if 'baseline' not in c['metrics'] or c['metrics']['baseline'] is None:
+        #     i = [
+        #         {"role": "system", "content": prompt_system},
+        #         {"role": "user", "content": prompt_user.format(question=c['question'], answer_a=c['output'][0], answer_b=c['output'][1])},
+        #     ]
+        #     output = self.model.get_outputs([i], max_tokens=1600)[0].message.content
+        #     score_map = {
+        #         '[[A]]': 1, '[[B]]': -1, '[[C]]': 0
+        #     }
+        #     r = None
+        #     for k, s in score_map.items():
+        #         if k in output:
+        #             r = s 
+        #             break
+        #     if r is None:
+        #         print(f'模型输出格式错误: {output}', file=sys.stderr)
+        #         # raise Exception(f'模型输出格式错误: {output}')
+        #     c['metrics']['baseline'] = r
 
-        if 'baseline_wo_tie' not in c['metrics'] or c['metrics']['baseline_wo_tie'] is None:
-            i = [
-                {"role": "system", "content": prompt_system_wo_tie},
-                {"role": "user", "content": prompt_user.format(question=c['question'], answer_a=c['output'][0], answer_b=c['output'][1])},
-            ]
-            output = self.model.get_outputs([i], max_tokens=1600)[0].message.content
-            score_map = {
-                '[[A]]': 1, '[[B]]': -1
-            }
-            r = None
-            for k, s in score_map.items():
-                if k in output:
-                    r = s 
-                    break
-            if r is None:
-                print(f'模型输出格式错误: {output}', file=sys.stderr)
-            c['metrics']['baseline_wo_tie'] = r
+        # if 'baseline_wo_tie' not in c['metrics'] or c['metrics']['baseline_wo_tie'] is None:
+        #     i = [
+        #         {"role": "system", "content": prompt_system_wo_tie},
+        #         {"role": "user", "content": prompt_user.format(question=c['question'], answer_a=c['output'][0], answer_b=c['output'][1])},
+        #     ]
+        #     output = self.model.get_outputs([i], max_tokens=1600)[0].message.content
+        #     score_map = {
+        #         '[[A]]': 1, '[[B]]': -1
+        #     }
+        #     r = None
+        #     for k, s in score_map.items():
+        #         if k in output:
+        #             r = s 
+        #             break
+        #     if r is None:
+        #         print(f'模型输出格式错误: {output}', file=sys.stderr)
+        #     c['metrics']['baseline_wo_tie'] = r
 
 #         if 'with_判题依据' not in c['metrics'] or c['metrics']['with_判题依据'] is None:
 #             new_prompt_system = prompt_system + '\nIn addition, you will also receive a judgment plan provided by an expert evaluator as a reference.'

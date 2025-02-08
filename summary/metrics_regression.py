@@ -26,7 +26,6 @@ def inc(features, labels):
     total_deta = 0
     predict_labels = []
     
-
     for i in range(total_size):
         feature = features[i]
     
@@ -51,8 +50,8 @@ def inc(features, labels):
     print(f'\tcorret: {cot/size:.3f}')
     print(f'\tdeta<=1: {in_1/size:.3f}')
     print(f'\tMAE: {total_deta/size:.3f}')
-    print(f'\tfeatures mutual info: {mutual_info_regression(features, labels, discrete_features=False)}')
-    print(f'\tmutual info: {mutual_info_regression(predict_labels, labels, discrete_features=False)}')
+    # print(f'\tfeatures mutual info: {mutual_info_regression(features, labels, discrete_features=False)}')
+    # print(f'\tmutual info: {mutual_info_regression(predict_labels, labels, discrete_features=False)}')
     print(f'\tspearmanr: {spearmanr([x[0] for x in predict_labels], labels)[0]}')
     print(f'\tkendalltau: {kendalltau([x[0] for x in predict_labels], labels)[0]}')
 
@@ -94,7 +93,8 @@ def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClas
 
         predict_model.fit(train_x, train_y)
 
-        print(predict_model.ranking_)
+        # print(predict_model.ranking_)
+
         # feature_importances = predict_model.feature_importances_
         # feature_importances_list.append(feature_importances)
         
@@ -111,6 +111,8 @@ def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClas
             if deta <= 1:
                 in_1 += 1
         
+        # print(pred_y)
+        # print(test_y)
         spearmanr_list.append(spearmanr(pred_y, test_y)[0])
         kendalltau_list.append(kendalltau(pred_y, test_y)[0])
         # print(f'\tPred cot_t: {cot_t/(end_i-i):.3f}')
@@ -126,7 +128,7 @@ def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClas
     print(f'\tPred MAE: {total_deta/size:.3f}')
     print(f'\tPred spearmanr: {sum(spearmanr_list)/len(spearmanr_list):.3f}')
     print(f'\tPred kendalltau: {sum(kendalltau_list)/len(kendalltau_list):.3f}')
-    print(f'\tPred feature importances: {feature_importances}')
+    # print(f'\tPred feature importances: {feature_importances}')
 
 
     # i, _ = min(enumerate(feature_importances), key=lambda x: x[1])
@@ -153,10 +155,9 @@ class Summary:
             labels.append(x['manual_score'])
 
         for metric in metric_names:
-            print(metric)
             probs = []
             for x in dataset:
-                v = x['metrics'][metric]
+                v = x['metrics'].get(metric)
                 if not isinstance(v, str) and isinstance(v, Iterable):
                     probs.append(v)
                 else:
@@ -165,15 +166,18 @@ class Summary:
             # 处理空值
             probs = deal_none(probs)
 
-            inc(probs, labels)
+            if metric.startswith('baseline'):
+                print(metric)
+                inc(probs, labels)
+                print('-' * 20)
+
             metrics[metric] = probs
-            print('-' * 20)
 
         for metric in feature_names:
             print(metric)
             probs = []
             for x in dataset:
-                v = x['features'][metric]
+                v = x['features'].get(metric)
                 if isinstance(v, Iterable):
                     probs.append(v)
                 else:

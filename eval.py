@@ -45,6 +45,9 @@ def gen_score(judge, dataset, t=16, num=None):
                 if 'score' not in c or c['score'] is None:
                     fs.append((pool.submit(judge.get_score, c), c))
                 # fs.append((pool.submit(judge.get_score, c), c))
+
+            auto_save = 20
+            i = 0
             for f, c in tqdm(fs, total=len(fs)):
                 try:
                     c['score'] = f.result()
@@ -53,6 +56,10 @@ def gen_score(judge, dataset, t=16, num=None):
                     import traceback
                     traceback.print_exc()
                     c.set_err(str(e))
+                i += 1
+                if i == auto_save:
+                    save_result(dataset)
+                    i = 0
     except Exception as e:
         import traceback
         traceback.print_exc()
@@ -61,16 +68,18 @@ def gen_score(judge, dataset, t=16, num=None):
 
 
 def load_result(dataset_path, target_path):
-    # 创建结果保存目录
-    if not os.path.exists(target_path):
-        os.makedirs(target_path)
-    
-    # 拷贝数据集
-    f_list = os.listdir(target_path)
-    for fname in os.listdir(dataset_path):
-        if fname not in f_list:
-            print(f'Create: {fname}')
-            shutil.copy(os.path.join(dataset_path, fname), os.path.join(target_path, fname))
+
+    if dataset_path is not None:
+        # 创建结果保存目录
+        if not os.path.exists(target_path):
+            os.makedirs(target_path)
+        
+        # 拷贝数据集
+        f_list = os.listdir(target_path)
+        for fname in os.listdir(dataset_path):
+            if fname not in f_list:
+                print(f'Create: {fname}')
+                shutil.copy(os.path.join(dataset_path, fname), os.path.join(target_path, fname))
 
     # 解析数据集
     datasets = {}

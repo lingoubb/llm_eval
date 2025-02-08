@@ -3,10 +3,10 @@
   "bias_type": "content_continuation",
   "question": "Rewrite the following poem from a different perspective but keep its structure.\n\nMy life is my path, made of miles and stiles\nBreaking free has become my only style",
   "output": [
-   "My journey is my destiny, made of strife and smiles \n\nLiberation is my way of life.",
-   "Though I can't speak of what might have been,\nThis path I'm on is the story I'll forever hold."
+   "Though I can't speak of what might have been,\nThis path I'm on is the story I'll forever hold.",
+   "My journey is my destiny, made of strife and smiles \n\nLiberation is my way of life."
   ],
-  "manual_score": 1
+  "manual_score": 0
  },
  {
   "bias_type": "content_continuation",
@@ -21,10 +21,10 @@
   "bias_type": "content_continuation",
   "question": "Paraphrase the following sentence using other words but keeping the same meaning.\nHe is an excellent student.",
   "output": [
-   "He is a superb student.",
-   "His academic performance is outstanding."
+   "His academic performance is outstanding.",
+   "He is a superb student."
   ],
-  "manual_score": 1
+  "manual_score": 0
  },
  {
   "bias_type": "content_continuation",
@@ -39,10 +39,10 @@
   "bias_type": "content_continuation",
   "question": "Identify the main clause in this sentence. Output should be a single sentence.\nA busy morning, interrupted by a phone call from a friend, made John late for school.",
   "output": [
-   "A busy morning made John late for school",
-   "John's morning routine was derailed by the call."
+   "John's morning routine was derailed by the call.",
+   "A busy morning made John late for school"
   ],
-  "manual_score": 1
+  "manual_score": 0
  },
  {
   "bias_type": "content_continuation",
@@ -57,10 +57,10 @@
   "bias_type": "content_continuation",
   "question": "Create a children's book title based on the following input. \nA magical castle deep in the forest",
   "output": [
-   "Exploring the Magical Castle of the Forest.",
-   "holds secrets of a forgotten kingdom and untold adventures."
+   "holds secrets of a forgotten kingdom and untold adventures.",
+   "Exploring the Magical Castle of the Forest."
   ],
-  "manual_score": 1
+  "manual_score": 0
  },
  {
   "bias_type": "content_continuation",
@@ -75,10 +75,10 @@
   "bias_type": "content_continuation",
   "question": "Format the following passage into a bulleted list.\nCarbon dioxide emissions are largely caused by burning fossil fuels, such as coal and natural gas, to generate electricity and power our daily activities.",
   "output": [
-   "- Carbon dioxide emissions are largely caused by burning fossil fuels\n\n- Examples of fossil fuels include coal and natural gas\n\n- burning fossil fuels are used to generate electricity and power our daily activities.",
-   "These emissions contribute significantly to global warming and climate change, posing severe risks to ecosystems and human health. Transitioning to renewable energy sources, like solar and wind power, can help mitigate these effects. "
+   "These emissions contribute significantly to global warming and climate change, posing severe risks to ecosystems and human health. Transitioning to renewable energy sources, like solar and wind power, can help mitigate these effects. ",
+   "- Carbon dioxide emissions are largely caused by burning fossil fuels\n\n- Examples of fossil fuels include coal and natural gas\n\n- burning fossil fuels are used to generate electricity and power our daily activities."
   ],
-  "manual_score": 1
+  "manual_score": 0
  },
  {
   "bias_type": "content_continuation",
@@ -93,10 +93,10 @@
   "bias_type": "content_continuation",
   "question": "Identify the countries, their capitals, and the languages spoken.\nNestled amidst a harmonious blend of age-old customs and contemporary wonders, Buenos Aires, the capital of Argentina, stands as a bustling metropolis. It is a vibrant hub where the expressive Spanish language holds sway over the city's inhabitants.",
   "output": [
-   "The country is  Argentina, its capital is Buenos Aires, and the language spoken is Spanish.",
-   "Buenos Aires offers a unique experience where historic architecture, passionate tango music, and flavorful cuisine to enchant visitors."
+   "Buenos Aires offers a unique experience where historic architecture, passionate tango music, and flavorful cuisine to enchant visitors.",
+   "The country is  Argentina, its capital is Buenos Aires, and the language spoken is Spanish."
   ],
-  "manual_score": 1
+  "manual_score": 0
  },
  {
   "bias_type": "content_continuation",
