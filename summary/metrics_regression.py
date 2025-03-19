@@ -10,6 +10,7 @@ from collections import Counter
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_selection import RFE
+from sklearn.model_selection import GridSearchCV
 
 def get_ans(f):
     return max(enumerate(f), key=lambda x: x[1])[0]
@@ -56,7 +57,7 @@ def inc(features, labels):
     print(f'\tkendalltau: {kendalltau([x[0] for x in predict_labels], labels)[0]}')
 
 
-def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClassifier(criterion='gini', max_depth=3)):
+def pred(metrics, labels, batch_percent=0.2, get_predict_model=lambda: tree.DecisionTreeClassifier(criterion='gini', max_depth=3)):
     size = len(labels)
     batch_size = math.ceil(batch_percent * size)
 
@@ -78,6 +79,7 @@ def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClas
     kendalltau_list = []
     feature_importances_list = []
 
+    all_pred_y = []
     
     for i in range(0, size, batch_size):
         end_i = min(i + batch_size, size)
@@ -88,10 +90,12 @@ def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClas
         train_y = labels[:i] + labels[end_i:size]
         
         # predict_model=tree.DecisionTreeClassifier(criterion='gini', max_depth=3)
-        predict_model = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42)
-        predict_model = RFE(predict_model, n_features_to_select=8, step=1)
+        predict_model = get_predict_model()
+        # predict_model = RFE(predict_model, n_features_to_select=8, step=1)
 
         predict_model.fit(train_x, train_y)
+        if "best_params_" in dir(predict_model):
+            print("Best parameters found: ", predict_model.best_params_)
 
         # print(predict_model.ranking_)
 
@@ -99,6 +103,7 @@ def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClas
         # feature_importances_list.append(feature_importances)
         
         pred_y = predict_model.predict(test_x)
+        all_pred_y += list(pred_y)
         
         cot_t = 0
 
@@ -134,6 +139,7 @@ def pred(metrics, labels, batch_percent=0.2, predict_model=tree.DecisionTreeClas
     # i, _ = min(enumerate(feature_importances), key=lambda x: x[1])
     # print(f'remove {i}')
     # features = [x[:i] + x[i+1:] for x in features]
+    return all_pred_y
 
 
 def deal_none(probs):
@@ -151,8 +157,13 @@ class Summary:
         metrics = {}
 
         labels = []
+        annos = []
+        baselines = []
+
         for x in dataset:
             labels.append(x['manual_score'])
+            annos.append(x.get('anno'))
+            baselines.append([])
 
         for metric in metric_names:
             probs = []
@@ -167,6 +178,8 @@ class Summary:
             probs = deal_none(probs)
 
             if metric.startswith('baseline'):
+                for i in range(len(baselines)):
+                    baselines[i] += probs[i]
                 print(metric)
                 inc(probs, labels)
                 print('-' * 20)
@@ -191,6 +204,37 @@ class Summary:
             print('-' * 20)
             
         # pm = MLPClassifier(hidden_layer_sizes=(200,200,200,100), max_iter=2000)
+        def get_pred_model():
+            rf = RandomForestClassifier(n_estimators=100)
+
+            param_grid = {
+                'n_estimators': [50, 100, 150],
+                'max_depth': [4, 5, 10, 15, 20],
+                'min_samples_split': [2, 5, 8],
+                'min_samples_leaf': [1, 3, 5],
+                'max_features': [20, 30, 50, 'sqrt', 'log2']
+            }
+
+            grid_search = GridSearchCV(rf, param_grid=param_grid, cv=4, n_jobs=-1)
+            return grid_search
+        
         if len(metrics) > 1:
-            pm = tree.DecisionTreeClassifier(criterion='gini', max_depth=4)
-            pred(metrics, labels, predict_model=pm)
+            all_pred_y = pred(metrics, labels, get_predict_model=get_pred_model)
+        
+        annos_map = {}
+        annos_map_count = {}
+        baselines_num = len(baselines[0])
+        for i in range(len(labels)):
+            if annos[i] is not None:
+                annos_map.setdefault(annos[i], [0] * (1 + baselines_num))
+                annos_map_count.setdefault(annos[i], 0)
+                annos_map_count[annos[i]] += 1
+                if labels[i] == all_pred_y[i]:
+                    annos_map[annos[i]][0] += 1
+                for j in range(baselines_num):
+                    if labels[i] == baselines[i][j]:
+                        annos_map[annos[i]][j+1] += 1
+        if annos_map:
+            print('anno_map')
+            for k, v in annos_map.items():
+                print(f'\t{k}: ' + ', '.join([f'{x/annos_map_count[k]:.3f}' for x in v]))

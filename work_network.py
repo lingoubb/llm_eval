@@ -59,7 +59,7 @@ judge = network.Judge([
 
 datasets = load_result('dataset/topical-chat', f'output/topical-chat/deepseek')
 for dataset in datasets:
-    gen_score(judge, dataset)
+    gen_score(judge, dataset) 
 print()
 
 for dataset in datasets:
@@ -70,5 +70,4 @@ for dataset in datasets:
 涉及的事实
 存在的矛盾
 问题的需求
-
 '''

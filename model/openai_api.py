@@ -42,7 +42,7 @@ class Model:
             except Exception as e:
                 print(f'unexpected resp: {response}')
                 raise e
-            print(f'[output] {repr(outputs[-1])}')
+            # print(f'[output] {repr(outputs[-1])}')
         # if logprobs:
         #     return outputs, [x.top_logprobs for x in response.choices[0].logprobs.content]
         # else:
