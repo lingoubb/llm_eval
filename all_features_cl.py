@@ -13,7 +13,7 @@ a = {
         "baseline": "",
         "baseline_wo_tie_0208": "",
     },
-    "indirect features":
+    "instruction features":
     {
         "0115_features_0": "问题中是否存在关于回答格式、回答要求、角色扮演等的指令",
         "0115_features_1": "该问题是没有标准答案的开放式问题吗",
@@ -144,7 +144,8 @@ a = {
         "0115_ultra_iter_metrics_2_18": "The assistant's response demonstrates a comprehensive attempt to address all parts of the question, even if some parts are incorrect or incomplete.",
         "0115_ultra_iter_metrics_2_19": "The assistant's response demonstrates a higher level of accuracy and professionalism in describing the product features and benefits.",
         "0115_ultra_iter_metrics_2_20": "The assistant's response effectively uses emotional and engaging language to attract and maintain the user's interest.",
-        "0115_ultra_iter_metrics_2_21": "The assistant's response provides additional valuable insights or explanations that enhance the overall usefulness and depth of the answer."
+        "0115_ultra_iter_metrics_2_21": "The assistant's response provides additional valuable insights or explanations that enhance the overall usefulness and depth of the answer.",
+        **{'0115_ultra_iter_2_0': '', '0115_ultra_depth_iter_2_0': '', '0115_ultra_depth_iter_2_1': '', '0115_ultra_depth_iter_2_2': '', '0115_ultra_depth_iter_2_3': '', '0115_ultra_depth_iter_2_4': '', '0115_ultra_depth_iter_2_5': '', '0115_ultra_depth_iter_2_6': ''}
     },
     "classification to scoring":
     {
@@ -156,10 +157,22 @@ a = {
         "0115_pair_score_4": "The assistant's response does not contain unnecessary redundant information",
         "0115_pair_score_5": "The assistant's response does not contain tedious or repetitive content",
         "0115_pair_score_6": "The information mentioned in the assistant's response does not contain any information that is inconsistent with facts or fabricated information",
+        
+        "0115_pair_score_2_0115_10": "Does the assistant's response provide clear and easy-to-understand explanations or steps?",
+        "0115_pair_score_2_0115_11": "Does the assistant's response consider the user's possible level of background knowledge?",
+        "0115_pair_score_2_0115_12": "Does the assistant's response offer multiple solutions or perspectives?",
+        "0115_pair_score_2_0115_13": "Does the assistant's response provide additional resources or references when necessary?",
+        "0115_pair_score_2_0115_14": "Does the assistant's response exhibit appropriate emotional tone?",
+        "0115_pair_score_2_0115_15": "Does the assistant's response provide timely information on time-sensitive issues?",
+        "0115_pair_score_2_0115_16": "Does the assistant's response appropriately simplify or break down complex issues?",
+        "0115_pair_score_2_0115_17": "Does the assistant's response provide specific examples or cases when needed?",
+        "0115_pair_score_2_0115_18": "Does the assistant's response offer clear advice or action steps when needed?",
+        "0115_pair_score_2_0115_19": "Does the assistant's response provide warnings or considerations about potential risks when needed?",
+        "0115_pair_score_2_0115_20": "Does the assistant's response provide data support or statistical information when necessary?",
+        "0115_pair_score_2_0115_21": "Does the assistant's response provide cross-cultural or cross linguistic considerations when necessary?",
 
     }
 }
-
 def get_feature_category(id):
     for k, v in a.items():
         for n in v:

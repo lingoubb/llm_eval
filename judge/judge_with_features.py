@@ -40,6 +40,7 @@ prompt_user = '''\
 
 from . import with_llm
 import sys
+from threading import Lock
 
 """
 主观题评测
@@ -51,12 +52,13 @@ class Judge(with_llm.Judge):
     def get_score(self, c):
 
         for k, v in self.features.items():
-            c.setdefault(k, {})
             for x in v:
                 name, func = x
                 if name not in c[k] or c[k][name] is None:
+                    # print(f'{c["id"]}, {name}, {c[k].get(name)}')
                     c[k][name] = func(self, c)
-
+                # else:   
+                    # print(f'ignore {c["question_id"]}, {name}, {c[k].get(name)}')
         # c.setdefault('metrics', {})
         # c.setdefault('features', {})
 

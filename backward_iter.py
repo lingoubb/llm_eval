@@ -39,16 +39,29 @@ exist = [
 rs = []
 for c in a:
     try:    
-        if abs(c['metrics']['baseline_0208'] - c['manual_score']) == 2:
-            i = [
-                {"role": "system", "content": dp.format(question=c['question'], output_a=c['output'][0], output_b=c['output'][1], all='\n'.join(exist))},
-            ]
-            r = m.get_outputs([i], text=True, temperature=1)[0].splitlines()[-1]
+        if c['id'] == 158:
+        # if abs(c['metrics']['baseline_0208'] - c['manual_score']) == 2:
+            if c['manual_score'] == -1:
+                i = [
+                    {"role": "system", "content": dp.format(question=c['question'], output_a=c['output'][0], output_b=c['output'][1], all='\n'.join(exist))},
+                ]
+            elif c['manual_score'] == 1:
+                i = [
+                    {"role": "system", "content": dp.format(question=c['question'], output_a=c['output'][1], output_b=c['output'][0], all='\n'.join(exist))},
+                ]
+
+            raw_r = m.get_outputs([i], text=True, temperature=1)[0]
+            r = raw_r.splitlines()[-1]
+            print(c['question'], c['output'])
+            print(raw_r)
+            print(r)
+            print('-'*10)
+
             exist.append(r)
             rs.append(r)
-            print(r)
+            # print(r)
     except Exception:
         pass
-import time
-with open(f'backward_iter_r_{int(time.time()/1000)}.json', 'w', encoding='utf-8') as f:
-    json.dump(rs, f, indent=1)
+# import time
+# with open(f'backward_iter_r_{int(time.time()/1000)}.json', 'w', encoding='utf-8') as f:
+#     json.dump(rs, f, indent=1)

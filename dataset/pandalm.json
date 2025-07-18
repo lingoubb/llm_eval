@@ -1,0 +1,1002 @@
+[
+ {
+  "data": {
+   "order_id": 246,
+   "instruction": "Change the response to have a more empathic tone in the chat.\n+ How are you doing?\n- Fine, I had a bunch of problems today.\n+ What kind of problems?",
+   "output_a": "How are you doing?",
+   "output_b": "+ I'm sorry to hear that. How can I help?",
+   "original_label": -1,
+   "id": 0
+  }
+ },
+ {
+  "data": {
+   "order_id": 36,
+   "instruction": "Please list the courses that someone interested in the first course might like.\nBitcoin and Cryptocurrency Technologies",
+   "output_a": "The courses that someone interested in Bitcoin and Cryptocurrency Technologies might like are:\n1. Introduction to Bitcoin and Cryptocurrency Technologies \n2. Advanced Bitcoin and Cryptocurrency Technologies \n3. Advanced Bitcoin and Cryptocurrency Technologies \n4. Advanced Bitcoin and Cryptocurrency Technologies \n5. Advanced Bitcoin and Cryptocurrency Technologies \n6. Advanced Bitcoin and Cryptocurrency Technologies",
+   "output_b": "The courses that someone interested in Bitcoin and Cryptocurrency Technologies might like include: \n1. Introduction to Bitcoin and Cryptocurrency Technologies \n2. Advanced Bitcoin and Cryptocurrency Technologies",
+   "original_label": -1,
+   "id": 1
+  }
+ },
+ {
+  "data": {
+   "order_id": 596,
+   "instruction": "Using the ingredients that are available, create a dinner recipe.\nKale + almond butter + apple cider vinegar + agave nectar + tamari",
+   "output_a": "Roasted Kale with Almond Butter and Apple Cider Vinegar",
+   "output_b": "Ingredients:\n- 2 cups kale\n- 2 tablespoons almond butter\n- 2 tablespoons apple cider vinegar\n- 1 tablespoon agave nectar\n- 1 tablespoon tamari\n\nInstructions:\n1. Preheat the oven to 375\u00b0F (190\u00b0C).\n2. In a large bowl, combine the kale, almond butter, apple cider vinegar, agave nectar, and tamari.\n3. Spread the mixture evenly over the bottom of a baking sheet.\n4. Bake for 25 minutes, stirring once halfway through.\n5. Let cool before serving.",
+   "original_label": -1,
+   "id": 2
+  }
+ },
+ {
+  "data": {
+   "order_id": 833,
+   "instruction": "Design an outline for a blog post based on the given information and list the sections accordingly.\nThis blog post is going to about making a list of last-minute gift ideas. Also, the tone of the post is going to be relaxed and casual.",
+   "output_a": "I. Introduction \nA. Definition of last-minute gift ideas \nB. Benefits of last-minute gift ideas \n\nII. List of Last-Minute Gift Ideas \nA. Gift ideas for men \nB. Gift ideas for women \nC. Gift ideas for kids \nD. Gift ideas for teens \n\nIII. Conclusion",
+   "output_b": "1. Introduction \n2. List of Last-Minute Gift Ideas \n3. Conclusion",
+   "original_label": 1,
+   "id": 3
+  }
+ },
+ {
+  "data": {
+   "order_id": 981,
+   "instruction": "Make a questionnaire to help hotel guests write hotel reviews.\n",
+   "output_a": "1. What did you like most about your stay at the hotel?\n2. What did you dislike most about your stay at the hotel?\n3. How would you rate your overall experience at the hotel?\n4. How would you rate the customer service at the hotel?\n5. How would you rate the cleanliness of the hotel?\n6. How would you rate the value for money at the hotel?\n7. How would you rate the location of the hotel?\n8. How would you rate the amenities at the hotel?\n9. How would you rate the quality of the food at the hotel?\n10. How would you rate the overall experience at the hotel?",
+   "output_b": "1. How would you rate your overall experience at the hotel?\n2. How would you rate the customer service at the hotel?\n3. How would you rate the food at the hotel?\n4. How would you rate the location of the hotel?\n5. How would you rate the value of the hotel?\n6. How would you rate the value of the amenities at the hotel?\n7. How would you rate the overall experience of the hotel?",
+   "original_label": 1,
+   "id": 4
+  }
+ },
+ {
+  "data": {
+   "order_id": 537,
+   "instruction": "Write a Jira ticket for the given task.\nNew Employee onboarding",
+   "output_a": "Issue: New Employee onboarding",
+   "output_b": "Ticket: New Employee onboarding \nSummary: Implementing onboarding procedures for new employees.",
+   "original_label": -1,
+   "id": 5
+  }
+ },
+ {
+  "data": {
+   "order_id": 875,
+   "instruction": "You should choose a YouTube video title based on the video's content. A video's title tells viewers what to expect from it. It should be direct, honest, and clear. The title of the video needs to capture the attention of viewers, so do not use an unclear or ambiguous one.\nA research study has been conducted to determine if exercise really can \"boost\" your metabolism.",
+   "output_a": "How Exercise Can Boost Your Metabolism",
+   "output_b": "A research study has been conducted to determine if exercise really can \"boost\" your metabolism.",
+   "original_label": 1,
+   "id": 6
+  }
+ },
+ {
+  "data": {
+   "order_id": 697,
+   "instruction": "Give a brief description of the given category of movies and shows.\nPeriod Dramas",
+   "output_a": "Period dramas are films set in a specific period of time, usually from the 18th century to the present day. These films often focus on the lives of individuals and their relationships with one another, exploring themes such as family dynamics, social class, and gender roles.",
+   "output_b": "Period dramas are a type of drama that follows a particular historical period, usually from the late 19th century to the early 20th century. They are often set in the 19th century and often focus on themes of social and political change.",
+   "original_label": -1,
+   "id": 7
+  }
+ },
+ {
+  "data": {
+   "order_id": 572,
+   "instruction": "Predict how many stars the author will give to the restaurant from a Yelp review.\nThe reviews were great, but honestly i felt it was just ok. Seemed like a typical tourist spot were the food was mediocre. The service was ok, not great, but not the worst.\nThe bread was very good. I ordered the muscle fries. They had a sweet Vidalia onion flavor. No need for fries bc they were soggy wo much flavor. My boyfriend ordered a pesto chicken pasta and it was again mediocre.",
+   "output_a": "5 stars",
+   "output_b": "The author will give the restaurant 3 stars.",
+   "original_label": -1,
+   "id": 8
+  }
+ },
+ {
+  "data": {
+   "order_id": 984,
+   "instruction": "Name the top cities in France that should not be missed. Include the best aspects of each place as well.\n",
+   "output_a": "1. Paris\n2. Lyon\n3. Marseille\n4. Nice\n5. Toulouse\n6. Dijon\n7. Burgundy\n8. Aquitaine\n9. Normandy\n10. Brittany",
+   "output_b": "The top cities in France that should not be missed include Paris, Lyon, Marseille, Nice, Toulouse, Bordeaux, Montpellier, Nantes, Lyon, Nice, Toulouse, Bordeaux, Montpellier, Nantes.",
+   "original_label": 1,
+   "id": 9
+  }
+ },
+ {
+  "data": {
+   "order_id": 9,
+   "instruction": "Make the article available in a second language by translating it into it.\nDentistry, also known as dental medicine and oral medicine, is the branch of medicine focused on the teeth, gums, and mouth. It consists of the study, diagnosis, prevention, management, and treatment of diseases, disorders, and conditions of the mouth, most commonly focused on dentition (the development and arrangement of teeth) as well as the oral mucosa. Dentistry may also encompass other aspects of the craniofacial complex including the temporomandibular joint. The practitioner is called a dentist.\nTranslate to French:",
+   "output_a": "La m\u00e9decine dentaire, ou m\u00e9decine dentaire, est la branche de la m\u00e9decine qui s'int\u00e9resse \u00e0 la dent, le gingembre, et la bouche. Elle comprend l'\u00e9tude, la diagnostique, la pr\u00e9vention, la gestion et la traitement des maladies, des probl\u00e8mes et des conditions de la bouche. Elle comprend \u00e9galement d'autres aspects de la craniofacial complexe, comme le temporomandibular. Le praticien est appel\u00e9 un dentiste.",
+   "output_b": "Dentistry, also known as dental medicine and oral medicine, is the branch of medicine focused on the teeth, gums, and mouth. It consists of the study, diagnosis, prevention, management, and treatment of diseases, disorders, and conditions of the mouth, most commonly focused on dentition (the development and arrangement of teeth) as well as the oral mucosa. Dentistry may also encompass other aspects of the craniofacial complex including the temporomandibular joint.",
+   "original_label": 1,
+   "id": 10
+  }
+ },
+ {
+  "data": {
+   "order_id": 760,
+   "instruction": "If you could help me write an email to my friends inviting them to dinner on Friday, it would be greatly appreciated.\n",
+   "output_a": "Dear Friends, \n\nI would like to invite you all to join me for dinner on Friday evening. I'm looking forward to catching up and spending some quality time together. \n\nPlease let me know if you can make it and I'll send you the details. \n\nSincerely, \n[Your Name]",
+   "output_b": "Dear Friends,\n\nI am so excited to invite you all to dinner on Friday! We will be having a great time, and I hope you can join us!\n\nLet me know if you have any questions or concerns, and I look forward to seeing you all!\n\nSincerely,\n[Your Name]",
+   "original_label": -1,
+   "id": 11
+  }
+ },
+ {
+  "data": {
+   "order_id": 193,
+   "instruction": "A list of all movies that meet the criteria given should be compiled.\nmovies directed by Spike Lee by release date",
+   "output_a": "Spike Lee-directed movies by release date:\n1. Do the Right Thing (1989)\n2. Malcolm X (1995)\n3. BlacKkKlansman (2009)\n4. Fruitvale Station (2013)\n5. BlacKkKlansman (2018)\n6. BlacKkKlansman (2019)\n7. BlacKkKlansman (2020)\n8. BlacKkKlansman (2021)\n9. BlacKkKlansman (2022)\n10. BlacKkKlansman (2023)\n11. BlacKkKlansman (2024)\n12. BlacKkKlansman (2025)\n13. BlacKkKlansman (2026)\n14. BlacKkKlansman (2027)\n15. BlacKkKlansman (2028)",
+   "output_b": "1. Do the Right Thing (1989)\n2. Jungle Fever (1991)\n3. She's Gotta Have It (1986)\n4. Malcolm X (1992)\n5. 25th Hour (2002)\n6. Inside Man (2006)\n7. Red Hook Summer (2009)\n8. Mo' Better Blues (1972)\n9. She's Gotta Have It (1986)\n10. Jungle Fever (1991)\n11. Malcolm X (1992)\n12. 25th Hour (2002)\n13. Inside Man (2006)\n14. Red Hook Summer (2009)",
+   "original_label": 1,
+   "id": 12
+  }
+ },
+ {
+  "data": {
+   "order_id": 379,
+   "instruction": "You should capitalize the sentence according to the guide.\nGuide: Every other letter alternates between lower case and upper case.\nSentence: A giant spider blocks your path.",
+   "output_a": "A giant spider blocks your path.",
+   "output_b": "The giant spider blocks your path.",
+   "original_label": 0,
+   "id": 13
+  }
+ },
+ {
+  "data": {
+   "order_id": 831,
+   "instruction": "Design an outline for a blog post based on the given information and list the sections accordingly.\nThis blog post is going to about making a list of last-minute gift ideas. Also, the tone of the post is going to be relaxed and casual.",
+   "output_a": "1. Introduction \n2. List of Last-Minute Gift Ideas \n3. Conclusion",
+   "output_b": "1. Introduction\n2. List of Last-Minute Gift Ideas\n3. Benefits of Making a List of Last-Minute Gift Ideas\n4. Conclusion",
+   "original_label": -1,
+   "id": 14
+  }
+ },
+ {
+  "data": {
+   "order_id": 420,
+   "instruction": "Enter the words that satisfy the given condition.\n5 Countries that Start with S",
+   "output_a": "South Africa, Spain, Sweden, Switzerland.",
+   "output_b": "United States, Spain, Sweden, Singapore, South Africa.",
+   "original_label": 1,
+   "id": 15
+  }
+ },
+ {
+  "data": {
+   "order_id": 403,
+   "instruction": "You are given a search query and a document. Classify whether the document is relevant to the search query or not relevant.\nSearch: why sky is blue\nDocument: The Short Answer: Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered more than the other colors because it travels as shorter, smaller waves. This is why we see a blue sky most of the time.",
+   "output_a": "Relevant",
+   "output_b": "Not Relevant",
+   "original_label": 1,
+   "id": 16
+  }
+ },
+ {
+  "data": {
+   "order_id": 649,
+   "instruction": "Write a LinkedIn post to announce that you have accepted a new job offer.\n",
+   "output_a": "I am delighted to announce that I have accepted a new job offer! I am thrilled to join the team at [Company Name] and I am looking forward to getting started in my new role.",
+   "output_b": "I am excited to announce that I have accepted a new job offer! I am looking forward to joining the team and contributing to the success of the organization.",
+   "original_label": 1,
+   "id": 17
+  }
+ },
+ {
+  "data": {
+   "order_id": 548,
+   "instruction": "Include important study notes and key points that someone should know about the given subject.\nhistory of the USA",
+   "output_a": "The history of the United States is one of the most influential and influential countries in the world. It has had a profound impact on the world and continues to shape the world today. The United States has had a long and storied history, from its founding in 1775 to the present day. It has had a tumultuous and tumultuous history, from the Revolutionary War to the Civil War and beyond. The United States has had a tumultuous and tumultuous history, from the Revolutionary War to the Civil War and beyond. The United States has had a long and storied history, from its founding in 1775 to the present day. It has had a profound impact on the world and continues to shape the world today.",
+   "output_b": "1. The United States of America was founded in 1776.\n2. The Declaration of Independence was signed in 1776.\n3. The Constitution of the United States was ratified in 1787.\n4. The American Revolution was fought from 1775-1783.\n5. The War of 1812 was fought from 1812-1815.\n6. The Civil War was fought from 1861-1865.\n7. The Great Depression was fought from 1929-1939.\n8. World War II was fought from 1939-1945.\n9. The Korean War was fought from 1950-1953.\n10. The Vietnam War was fought from 1965-1975.\n11. The Gulf War was fought from 1990-1991.\n12. The War on Terror was fought from 2001-present.",
+   "original_label": -1,
+   "id": 18
+  }
+ },
+ {
+  "data": {
+   "order_id": 130,
+   "instruction": "Solve the given Sudoku puzzle.\nThe Sudoku puzzle is:\n|1| |5| | | | |8| |\n| | | | | |3| |6|4|\n|8|3|4|6|7| |9| | |\n|2|9|1| | |8|3|7|6|\n| | |6| | |9|8|1| |\n| | | | | |2| | | |\n| |2| | |9|7|6| | |\n|5|4| | | | | |9|8|\n|6|1| | | |5|4|3|7|",
+   "output_a": "The Sudoku puzzle has been solved.",
+   "output_b": "|1| |5| | | | |8| |\n| | | | | |3| |6|4|\n|8|3|4|6|7| |9| | |\n|2|9|1| | |8|3|7|6|\n| | |6| | |9|8|1| |\n| |2| | | |2| | | |\n| |5| | | | | |9|8|\n|6|1| | | |5|4|3|7|",
+   "original_label": -1,
+   "id": 19
+  }
+ },
+ {
+  "data": {
+   "order_id": 910,
+   "instruction": "Give the provided brand a motto to use as a part of its marketing strategies.\nThe Ice cream shop is a small, quaint shop located in the heart of the historic district. They offer a variety of ice cream flavors, as well as Italian ice, gelato, and sorbet. The shop has a few tables and chairs, but most of their business is to-go. They offer a loyalty program where you can get a free scoop of ice cream after 10 purchases.",
+   "output_a": "The Ice Cream Shop is a small, quaint shop located in the heart of the historic district. They offer a variety of ice cream flavors, as well as Italian ice, gelato, and sorbet.",
+   "output_b": "Enjoy the Taste of Tradition - The Ice Cream Shop",
+   "original_label": -1,
+   "id": 20
+  }
+ },
+ {
+  "data": {
+   "order_id": 528,
+   "instruction": "Create a template in markdown to create scope for Jira tickets. Members should use this template as a checklist to ensure they have included all the necessary information when creating a ticket.\n",
+   "output_a": "<nooutput>",
+   "output_b": "[Checklist for Jira tickets]",
+   "original_label": 0,
+   "id": 21
+  }
+ },
+ {
+  "data": {
+   "order_id": 140,
+   "instruction": "Solve this equation.\nx^3 - 4x^2 + 6x - 24 = 0",
+   "output_a": "x = 3",
+   "output_b": "x = 2",
+   "original_label": 0,
+   "id": 22
+  }
+ },
+ {
+  "data": {
+   "order_id": 924,
+   "instruction": "You need to write an email to negotiate your salary.\n",
+   "output_a": "Dear [Name],\n\nI am writing to express my interest in discussing my salary with you. I am confident that my skills and experience make me a valuable addition to your team and I am confident that I can contribute to the success of your business. I am confident that I can provide the necessary skills and experience to help you achieve your goals.\n\nI am confident that I can provide the necessary skills and experience to help you achieve your goals.\n\nI am confident that I can provide the necessary skills and experience to help you achieve your goals.\n\nI am confident that I can provide the necessary skills and experience to help you achieve your goals.\n\nI am confident that I can provide the necessary skills and experience to help you achieve your goals.\n\nThank you for your time and consideration.\n\nSincerely,\n[Your Name]",
+   "output_b": "Dear [Name], \n\nI am writing to express my interest in the position of [job title] at [company name]. I am confident that my qualifications and experience make me an ideal candidate for the role. \n\nI am currently earning [salary] at [company name] and I am looking for a salary of [salary] at [company name] for the position of [job title]. \n\nI am available for an interview at your convenience. \n\nThank you for your time and consideration. \n\nSincerely, \n[Your Name]",
+   "original_label": 1,
+   "id": 23
+  }
+ },
+ {
+  "data": {
+   "order_id": 801,
+   "instruction": "We need to write a thematic tweet to share company news and facts. Please take a careful look at the facts and details provided and create a tweet based on them.\n- news: Applications for summer internships are open now\n- Start with a thematic tie-in to Halloween",
+   "output_a": "Halloween is here! Applications for summer internships are now open! #SummerInternship #SummerInternship #SummerInternship #SummerInternship",
+   "output_b": "Happy Halloween! Applications for summer internships are now open! #SummerInternships #Halloween",
+   "original_label": -1,
+   "id": 24
+  }
+ },
+ {
+  "data": {
+   "order_id": 192,
+   "instruction": "A list of all movies that meet the criteria given should be compiled.\nmovies directed by Spike Lee by release date",
+   "output_a": "Spike Lee-directed movies by release date:\n1. Do the Right Thing (1989)\n2. Malcolm X (1995)\n3. BlacKkKlansman (2009)\n4. Fruitvale Station (2013)\n5. BlacKkKlansman (2018)\n6. BlacKkKlansman (2019)\n7. BlacKkKlansman (2020)\n8. BlacKkKlansman (2021)\n9. BlacKkKlansman (2022)\n10. BlacKkKlansman (2023)\n11. BlacKkKlansman (2024)\n12. BlacKkKlansman (2025)\n13. BlacKkKlansman (2026)\n14. BlacKkKlansman (2027)\n15. BlacKkKlansman (2028)",
+   "output_b": "A list of movies directed by Spike Lee by release date could include: \n- She's Gotta Have It (1986)\n- School Daze (1988)\n- Do the Right Thing (1989)\n- Mo' Better Blues (1990)\n- Jungle Fever (1991)\n- Malcolm X (1992)\n- Clockers (1995)\n- Girl 6 (1996)\n- Summer of Sam (1999)\n- Bamboozled (2000)\n- 25th Hour (2002)\n- Inside Man (2006)\n- Miracle at St. Anna (2008)\n- Red Hook Summer (2012)\n- Chi-Raq (2015)",
+   "original_label": -1,
+   "id": 25
+  }
+ },
+ {
+  "data": {
+   "order_id": 967,
+   "instruction": "Write a short analysis of the cinematography in the movie.\nDead Poets Society",
+   "output_a": "The cinematography in the movie Dead Poets Society is stunning. The cinematography is filled with vibrant colors, vibrant lighting, and a sense of movement. The cinematography is filled with vibrant colors, vibrant lighting, and a sense of movement. The cinematography is filled with vibrant colors, vibrant lighting and a sense of movement.",
+   "output_b": "The cinematography in the movie Dead Poets Society is stunning. The cinematography captures the beauty of nature, the emotion of the characters, and the powerful message of the movie. The use of color and lighting creates a unique atmosphere, while the use of slow-motion and close-ups creates a powerful emotional impact. The cinematography in Dead Poets Society is one of the best examples of cinematography in a movie.",
+   "original_label": -1,
+   "id": 26
+  }
+ },
+ {
+  "data": {
+   "order_id": 109,
+   "instruction": "Describe how to prepare the given food in your own words. Note down the ingredients you will need and the steps you will take to prepare them.\nChewy Chocolate Chip Cookies",
+   "output_a": "Ingredients:\n- 2 cups all-purpose flour\n- 2 teaspoons baking powder\n- 1/2 teaspoon baking soda\n- 1/2 teaspoon salt\n- 1 1/2 cups semi-sweet chocolate chips\n- 2 tablespoons melted butter\n- 1 teaspoon vanilla extract\n\nInstructions:\n1. Preheat the oven to 350\u00b0F (175\u00b0C).\n2. In a large bowl, combine the flour, baking powder, baking soda, and salt.\n3. In a separate bowl, combine the semi-sweet chocolate chips, melted butter, and vanilla extract.\n4. Add the dry ingredients to the wet ingredients and mix until just combined.\n5. Drop spoonfuls of the dough onto a greased baking sheet.\n6. Bake for 18-20 minutes, or until golden brown.\n7. Let cool before serving. Enjoy!",
+   "output_b": "1. Preheat oven to 350\u00b0F (175\u00b0C).\n2. In a large bowl, mix together all-purpose flour, baking soda, and salt.\n3. In a separate bowl, mix together the melted butter, sugars, and vanilla extract.\n4. Add the dry ingredients to the wet ingredients and mix until just combined.\n5. Fold in the chocolate chips.\n6. Drop by spoonfuls onto an ungreased baking sheet.\n7. Bake for 8-10 minutes, or until golden brown.\n8. Let cool before serving. Enjoy!",
+   "original_label": 1,
+   "id": 27
+  }
+ },
+ {
+  "data": {
+   "order_id": 201,
+   "instruction": "Using a given amount, determine an appropriate tip.\n14% tip on $47.50",
+   "output_a": "The appropriate tip is $4.50.",
+   "output_b": "14% tip on $47.50 is $47.50.",
+   "original_label": 1,
+   "id": 28
+  }
+ },
+ {
+  "data": {
+   "order_id": 772,
+   "instruction": "Prepare an email signature template for the given person or company.\na graduate student of computer science",
+   "output_a": "Dear Graduate Student of Computer Science, \n\nI am writing to express my sincere gratitude for your thoughtful email.\n\nI am writing to express my sincere gratitude for your thoughtful email. I am writing to express my sincere gratitude for your thoughtful email. I am writing to express my sincere gratitude for your thoughtful email. I am writing to express my sincere gratitude for your thoughtful email. I am writing to express my sincere gratitude for your thoughtful email.",
+   "output_b": "<no-output>",
+   "original_label": 1,
+   "id": 29
+  }
+ },
+ {
+  "data": {
+   "order_id": 719,
+   "instruction": "How would you describe the meaning of this lyrics? Describe some of the metaphors.\nMy lover\u2019s got humor\nShe\u2019s the giggle at a funeral\nKnows everybody\u2019s disapproval\nI should\u2019ve worshipped her sooner",
+   "output_a": "My lover's got a sense of humor, like a clown at a funeral. She knows everyone's disapproval and should have worshipped her sooner.",
+   "output_b": "The lyrics are about a person who has a unique sense of humor and is unafraid to speak her mind, even in the face of disapproval.",
+   "original_label": -1,
+   "id": 30
+  }
+ },
+ {
+  "data": {
+   "order_id": 832,
+   "instruction": "Design an outline for a blog post based on the given information and list the sections accordingly.\nThis blog post is going to about making a list of last-minute gift ideas. Also, the tone of the post is going to be relaxed and casual.",
+   "output_a": "I. Introduction \nA. Definition of last-minute gift ideas \nB. Benefits of last-minute gift ideas \n\nII. List of Last-Minute Gift Ideas \nA. Gift ideas for men \nB. Gift ideas for women \nC. Gift ideas for kids \nD. Gift ideas for teens \n\nIII. Conclusion",
+   "output_b": "1. Introduction\n2. List of Last-Minute Gift Ideas\n3. Benefits of Making a List of Last-Minute Gift Ideas\n4. Conclusion",
+   "original_label": 1,
+   "id": 31
+  }
+ },
+ {
+  "data": {
+   "order_id": 578,
+   "instruction": "Categorize the Business into one of the Restaurants, Home Services, Auto Services and Miscellaneous based on its Specialties.\nCall us at 650-636-4884 or visit our website to receive a quote. This shop specializes in New Tires and General Auto Repair. We carry all tires in-house and have a wide range to fit any budget or car specifics. If you are unsure what tires you need there are experts on hand and available to help you pick the best tire for your needs. We also carry commercial vehicle tires and can serve a wide array of fleets.",
+   "output_a": "Restaurant",
+   "output_b": "Restaurant: New Tires and General Auto Repair\nHome Service: Tires and Auto Repair\nAuto Service: Tires and Auto Repair\nMiscellaneous: Tires and Auto Repair",
+   "original_label": -1,
+   "id": 32
+  }
+ },
+ {
+  "data": {
+   "order_id": 150,
+   "instruction": "Based on the facts that have been provided, prove the following statement.\nStatement: \"For every integer k, k^2 + 2k + 1 \u2265 0\"\nFact: The square of any real number is non-negative.",
+   "output_a": "Fact: For every integer k, k^2 + 2k + 1 \u2265 0.",
+   "output_b": "For every integer k, k^2 + 2k + 1 \u2265 0.",
+   "original_label": 0,
+   "id": 33
+  }
+ },
+ {
+  "data": {
+   "order_id": 714,
+   "instruction": "Curate a Spotify playlist based on the vibe. Publish this playlist as a song list.\nVibe: coding on weekend",
+   "output_a": "Vibe: coding on weekend: https://www.spotify.com/user/codingonweekend",
+   "output_b": "<noinput>",
+   "original_label": 1,
+   "id": 34
+  }
+ },
+ {
+  "data": {
+   "order_id": 491,
+   "instruction": "During writing, we added an asterisk for the word that did not come to mind. You will need to provide several examples to demonstrate all the words that can be used in the sentence instead of the asterisk.\nwe * to know",
+   "output_a": "We need to know.",
+   "output_b": "We should know.",
+   "original_label": 1,
+   "id": 35
+  }
+ },
+ {
+  "data": {
+   "order_id": 70,
+   "instruction": "Answer the following literature question as accurately as possible based on your knowledge of literature for high school students.\nWhat does the green light symbolize at the end of the book?",
+   "output_a": "The green light symbolizes hope.",
+   "output_b": "The green light symbolizes hope and optimism.",
+   "original_label": -1,
+   "id": 36
+  }
+ },
+ {
+  "data": {
+   "order_id": 628,
+   "instruction": "Define what the underlined word means for kids.\n_keep a promise",
+   "output_a": "keep a promise",
+   "output_b": "A promise is a promise that you will do something.",
+   "original_label": -1,
+   "id": 37
+  }
+ },
+ {
+  "data": {
+   "order_id": 590,
+   "instruction": "Using the ingredients that are available, create a dinner recipe.\nKale + almond butter + apple cider vinegar + agave nectar + tamari",
+   "output_a": "Ingredients:\n- Kale\n- Almond butter\n- Apple cider vinegar\n- Agave nectar\n- Tamari\n- Salt\n- Pepper\n\nInstructions:\n1. Preheat oven to 350\u00b0F.\n2. In a large bowl, combine the kale, almond butter, apple cider vinegar, agave nectar, tamari, and salt and pepper to taste.\n3. Spread the mixture on a baking sheet lined with parchment paper.\n4. Bake for 25 minutes, or until the mixture is golden brown.\n5. Let cool for 5 minutes before serving.",
+   "output_b": "Kale + almond butter + apple cider vinegar + agave nectar + tamari \n\nInstructions:\n1. Preheat oven to 350\u00b0F.\n2. In a large bowl, mix together the kale, almond butter, apple cider vinegar, agave nectar, and tamari.\n3. Spread the mixture onto a baking sheet and bake for 20 minutes.\n4. Let cool before serving.",
+   "original_label": 1,
+   "id": 38
+  }
+ },
+ {
+  "data": {
+   "order_id": 195,
+   "instruction": "A list of all movies that meet the criteria given should be compiled.\nmovies directed by Spike Lee by release date",
+   "output_a": "Spike Lee directed movies released in the year 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048, 2049, 2050, 2051, 2052, 2053, 2054, 2055, 2056, 2057, 2058, 2059, 2060, 2061, 2062, 2063, 2064, 2065, 2066, 2067,",
+   "output_b": "A list of movies directed by Spike Lee by release date could include: \n- She's Gotta Have It (1986)\n- School Daze (1988)\n- Do the Right Thing (1989)\n- Mo' Better Blues (1990)\n- Jungle Fever (1991)\n- Malcolm X (1992)\n- Clockers (1995)\n- Girl 6 (1996)\n- Summer of Sam (1999)\n- Bamboozled (2000)\n- 25th Hour (2002)\n- Inside Man (2006)\n- Miracle at St. Anna (2008)\n- Red Hook Summer (2012)\n- Chi-Raq (2015)",
+   "original_label": -1,
+   "id": 39
+  }
+ },
+ {
+  "data": {
+   "order_id": 876,
+   "instruction": "You should choose a YouTube video title based on the video's content. A video's title tells viewers what to expect from it. It should be direct, honest, and clear. The title of the video needs to capture the attention of viewers, so do not use an unclear or ambiguous one.\nA research study has been conducted to determine if exercise really can \"boost\" your metabolism.",
+   "output_a": "The Benefits of Exercise: A Research Study.",
+   "output_b": "Exercise Boosts Metabolism",
+   "original_label": -1,
+   "id": 40
+  }
+ },
+ {
+  "data": {
+   "order_id": 283,
+   "instruction": "Correct the transcription of an excerpt containing errors.\nI got got charged interest on ly credit card but I paid my pull balance one day due date. I not missed a pavement year yet. Man you reverse the interest charge?",
+   "output_a": "I got charged interest on my credit card, but I paid my balance one day due date.",
+   "output_b": "I got got charged interest on ly credit card but I paid my pull balance one day due date.",
+   "original_label": 1,
+   "id": 41
+  }
+ },
+ {
+  "data": {
+   "order_id": 658,
+   "instruction": "Make a list of desirable Skills for software engineers to add to LinkedIn.\n",
+   "output_a": "Desirable Skills for software engineers to add to LinkedIn: \n1. Programming languages such as Java, Python, C++, and JavaScript. \n2. Database management systems such as MySQL, Oracle, and SQL Server. \n3. Web development tools such as HTML, CSS, and JavaScript. \n4. Software testing tools such as Selenium, JUnit, and PHPUnit. \n5. Cloud computing platforms such as Amazon Web Services, Google Cloud Platform, and Microsoft Azure. \n6. Networking protocols such as TCP/IP, HTTP, and HTTPS. \n7. Security protocols such as SSH, SSL, and VPN. \n8. Mobile development platforms such as Android, iOS, and Windows Phone. \n9. Cloud computing platforms such as Amazon Web Services, Google Cloud Platform, and Microsoft Azure. \n10. Networking protocols such as TCP/IP, HTTP, and HTTPS. \n11. Security protocols such as SSH, SSL, and VPN.",
+   "output_b": "1. Knowledge of object-oriented programming languages such as Java, C#, and C++.\n2. Knowledge of databases, such as SQL and NoSQL.\n3. Knowledge of web development, such as HTML, CSS, and JavaScript.\n4. Knowledge of mobile development, such as Android and iOS.\n5. Knowledge of artificial intelligence, such as machine learning and natural language processing.",
+   "original_label": 1,
+   "id": 42
+  }
+ },
+ {
+  "data": {
+   "order_id": 500,
+   "instruction": "Write an engaging and well-written property listing description for selling a house. Address of the house and some of the details are given to you. Fill in the information gap with hallucinations if needed.\nProperty Address: 412 Monterey Ave, Capitola, CA 95010\nParking: 3 cars + a finished single car garage\nDetails:\n- open floorplan\n- window with views to park/mountains\n- Kitchen with shaker cabinetry and white Calcatta quartz counters",
+   "output_a": "Welcome to 412 Monterey Ave, Capitola, CA 95010! This stunning home boasts an open floorplan, a finished single car garage, and beautiful views of the park and mountains. The kitchen features shaker cabinetry and white Calcatta quartz counters, creating a warm and inviting space for cooking and entertaining. The bedrooms are spacious and light-filled, with plenty of closet and storage space. The backyard is perfect for outdoor entertaining, with a patio and BBQ grill. This home is a must-see!",
+   "output_b": "The house is located at 412 Monterey Ave, Capitola, CA 95010. It has an open floor plan with three bedrooms, two bathrooms, and a finished single car garage. The kitchen has shaker cabinetry and white Calcatta quartz countertops. The living room has a window with views to the park and mountains. The master bedroom has a large walk-in closet. The backyard has a patio and a fire pit.",
+   "original_label": 1,
+   "id": 43
+  }
+ },
+ {
+  "data": {
+   "order_id": 446,
+   "instruction": "Summarize a meeting from the given list of bullet points. Be sure to convert shorthand into a first-hand account.\nRose: Analyze data and presents findings\nJohn: propose new idea\nJane: appointed to head project\nTom: need more time to fix software bug",
+   "output_a": "Rose: Analyze data and presents findings\nJohn: proposes new idea\nJane: appointed to head project\nTom: need more time to fix software bug",
+   "output_b": "Rose: Analyze data and presents findings\nJohn: propose new idea\nJane: appointed to head project\nTom: need more time to fix software bug",
+   "original_label": 0,
+   "id": 44
+  }
+ },
+ {
+  "data": {
+   "order_id": 413,
+   "instruction": "Rewrite the given text and correct grammar, spelling, and punctuation errors.\nIf you'd told me year ago that today I would finish a marathon, I would of laughed. Your support had a huge affect on me!",
+   "output_a": "If you told me a year ago that today I would finish a marathon, I would have laughed. Your support had a huge effect on me!",
+   "output_b": "If you had told me year ago that today I would finish a marathon, I would of laughed. Your support had a huge affect on me!",
+   "original_label": 1,
+   "id": 45
+  }
+ },
+ {
+  "data": {
+   "order_id": 653,
+   "instruction": "Explain the meaning of the given phrase in simple terms. Use an example if possible. It would be helpful if you could give an example.\n\"With a little give in them\"",
+   "output_a": "The phrase \"with a little give in them\" means to have a little bit of generosity in oneself.",
+   "output_b": "The phrase \"with a little give in them\" means to have a bit of flexibility or room for compromise.",
+   "original_label": -1,
+   "id": 46
+  }
+ },
+ {
+  "data": {
+   "order_id": 943,
+   "instruction": "You are given some reviews for a movie. Each video might have mentioned some negative or positive points about the movie. Read them carefully and extract the positive and negative points mentioned in all of the reviews. Then, make a list of these points and summarize them as positive points and negative points.\nReview 1: I'm not sure if it's just the fact that Ed Norton really grates on me in this film, but I never really bought into the idea of Fight Club being some kind of cultural phenomenon. Yes it's an innovative story, told via a strong script, engaging characters and intense cinematography. But is it really worthy of such high praise? Personally, I find it starts to fall apart halfway through and actually becomes quite tedious towards the end. Everything just becomes a little bit childish and contrived as the story loses touch with its base elements and the rage against the machine vibe takes over. I have huge respect for the way this film was made but, much like The Matrix, I feel like people attach way more importance to this movie than it deserves.\nReview 2: The film tells the story of men who cannot adapt to the social order in today's world, under the leadership of Tyler Durden, to discover their natural instinct, masculinity, and to escape from their unhappy lives.\nReview 3: Despite a good theme, great acting and important messages that this movie convey in an unorthodox way, I think it fails to connect the audience with the storyline and leaves him in a world of confusion. Although, majority of reviews find this movie entertaining and interesting, yet I would choose to be a minority that believes that this movie is extremely overrated.\nReview 4: Is creating chaos, explosions and membership in a militant sect the way to get rid of material shackles ?! The visual effects are fascinating and the story is compelling until the second half. Unfortunately, it doesn't end well.",
+   "output_a": "",
+   "output_b": "Positive points: \n- Innovative story \n- Strong script \n- Engaging characters \n- Intense cinematography \n\nNegative points: \n- Loses touch with its base elements \n- Becomes tedious towards the end \n- Childish and contrived",
+   "original_label": -1,
+   "id": 47
+  }
+ },
+ {
+  "data": {
+   "order_id": 513,
+   "instruction": "Review the property description and tell us what is good and what is bad about it and list its key takeaways.\nThere's real magic in combining inherently compelling Victorian architecture with a modern aesthetic. Add in an extraordinary multi-level garden & the result is the undeniable elegance of 444 29th St. The front of the home is light-filled w/ a seamless connection between living, dining & kitchen. Newly updated kitchen w/ quartz counters & upgraded appliances. A lg dining rm has a bay of windows &, when paired w/ the adjacent living rm, provides an ideal space to entertain. 2 lg bdrms on this level are at the rear. Both w/ lg closets & walk out to the garden. Stylishly remodeled full bath on this level. 3rd bdrm/2nd full bath are located on the ground floor - perfect as a guest rm, home office, fitness area, etc. The enormous garden occupies an extra deep lot & is beautifully landscaped & terraced. Laundry/storage rm, 1-car garage pkg, Tesla solar panels. Prime, flat part of Noe Valley - short walk to all that Noe has to offer. Steps from the J-Church & convenient to shuttles/freeways.",
+   "output_a": "Good: The property is well-maintained, modern, and aesthetically pleasing.\n\nBad: The property does not have a lot of natural light.\n\nKey Takeaways: The property is well-maintained, modern, and aesthetically pleasing.",
+   "output_b": "",
+   "original_label": 1,
+   "id": 48
+  }
+ },
+ {
+  "data": {
+   "order_id": 736,
+   "instruction": "Make a list of the most popular podcasts.\n",
+   "output_a": "1. Serial \n2. The Daily Show \n3. The Moth \n4. Serial \n5. The Leftovers \n6. Serial \n7. The Moth \n8. The Leftovers \n9. Serial \n10. The Moth",
+   "output_b": "1. The Tim Ferris Show\n2. The Joe Rogan Experience\n3. The Adam Carolla Show\n4. Serial\n5. This American Life\n6. Radiolab\n7. Reply All\n8. The Daily Show with Trevor Noah\n9. The Nightly Show with Larry Wilmore\n10. This Week in Politics",
+   "original_label": -1,
+   "id": 49
+  }
+ },
+ {
+  "data": {
+   "order_id": 308,
+   "instruction": "You will be required to write a few questions from the given company's interview section.\nKohl's",
+   "output_a": "1. What do you consider to be the most important qualities of a successful leader?\n2. What strategies do you use to motivate and inspire your team?\n3. How do you stay up-to-date with the latest trends in the industry?\n4. How do you handle difficult situations?\n5. How do you handle criticism?\n6. How do you stay organized?\n7. How do you stay motivated?\n8. How do you stay focused?\n9. How do you handle stress?\n10. How do you handle change?\n11. How do you handle difficult conversations?\n12. How do you handle difficult situations?\n13. How do you handle criticism?\n14. How do you stay organized?\n15. How do you stay motivated?\n16. How do you stay focused?\n17. How do you handle stress?\n18. How do you handle change?",
+   "output_b": "1. How long have you been with Kohl's?\n2. What do you enjoy most about working at Kohl's?\n3. What challenges have you faced while working at Kohl's?\n4. How do you handle customer complaints?\n5. How do you handle difficult customers?\n6. How do you stay up-to-date with the latest trends in the industry?\n7. What do you think is the most important quality a Kohl's employee should have?\n8. What do you think is the most important quality a Kohl's customer should have?\n9. How do you handle difficult customers?\n10. How do you stay up-to-date with the latest trends in the industry?",
+   "original_label": 1,
+   "id": 50
+  }
+ },
+ {
+  "data": {
+   "order_id": 51,
+   "instruction": "Give students tips on how to keep their nerves under control during class presentations.\n",
+   "output_a": "Here are some tips to help keep your nerves under control during class presentations:\n- Take deep breaths before you start your presentation.\n- Practice your presentation beforehand.\n- Speak slowly and clearly.\n- Make eye contact with your audience.\n- Take breaks throughout your presentation.\n- Speak with confidence and enthusiasm.\n- Use visual aids to make your presentation easier to follow.\n- Speak in a calm and relaxed manner.\n- Stay focused on the task at hand.\n- Speak in a calm and relaxed manner.\n- Speak in a calm and relaxed manner.\n- Speak in a calm and relaxed manner.\n- Speak in a calm and relaxed manner.\n- Speak in a calm and relaxed manner.",
+   "output_b": "1. Practice your presentation beforehand.\n2. Take deep breaths before you begin.\n3. Speak slowly and clearly.\n4. Make eye contact with your audience.\n5. Use visual aids such as charts, graphs, and diagrams.\n6. Make sure to thank your audience at the end of your presentation.",
+   "original_label": -1,
+   "id": 51
+  }
+ },
+ {
+  "data": {
+   "order_id": 698,
+   "instruction": "Give a brief description of the given category of movies and shows.\nPeriod Dramas",
+   "output_a": "Period dramas are films set in a specific period of time, usually from the 18th century to the present day. These films often focus on the lives of individuals and their relationships with one another, exploring themes such as family dynamics, social class, and gender roles.",
+   "output_b": "Period dramas are movies and shows that take place in a specific time period, usually set in the past. They often feature elaborate costumes, elaborate sets, and intricate storylines. Examples of period dramas include Downton Abbey, Pride and Prejudice, and The Godfather.",
+   "original_label": -1,
+   "id": 52
+  }
+ },
+ {
+  "data": {
+   "order_id": 296,
+   "instruction": "Classify the questions in the FAQ into Finding policy details, Change account settings, Filing a claim and viewing status, or Cancelling coverage.\nCould you deposit money into my account rather than mailing me a physical cheque?",
+   "output_a": "Finding policy details.",
+   "output_b": "Finding policy details",
+   "original_label": 0,
+   "id": 53
+  }
+ },
+ {
+  "data": {
+   "order_id": 98,
+   "instruction": "Provide a cooking hack for improving the flavor of the given food.\npopcorn",
+   "output_a": "To improve the flavor of popcorn, sprinkle it with cinnamon and nutmeg before popping it in the microwave.",
+   "output_b": "To improve the flavor of popcorn, you can add a tablespoon of butter to the popped kernels. This will give the popcorn a richer, buttery flavor.",
+   "original_label": -1,
+   "id": 54
+  }
+ },
+ {
+  "data": {
+   "order_id": 904,
+   "instruction": "Discuss the origins and history of the word that has been given to you.\noblique",
+   "output_a": "The word \"oblique\" is derived from the Latin word \"obliquus\", which means \"slanting\" or \"slantwise\". It was first used in English in the 14th century, and has been used to describe a variety of things, such as an oblique angle, an oblique line, an oblique view, and an oblique perspective.",
+   "output_b": "The word \"oblique\" comes from the Latin word \"obliquus\" which means \"oblique\" or \"crooked\". It was first used to describe the shape of an object in the 16th century.",
+   "original_label": 1,
+   "id": 55
+  }
+ },
+ {
+  "data": {
+   "order_id": 110,
+   "instruction": "Suggest a recipe for a vegan dessert.\n",
+   "output_a": "Ingredients:\n- 1/2 cup vegan chocolate chips\n- 1/2 cup vegan butter\n- 1/2 cup vegan cream cheese\n- 1/2 cup vegan granulated sugar\n- 1/2 cup vegan sour cream\n- 1/2 cup vegan confectioners' sugar\n- 1/2 cup vegan chocolate chips\n- 1/2 cup vegan chocolate chips\n- 1/2 cup vegan chocolate chips\n- 1/2 cup vegan chocolate chips\n- 1/2 cup vegan chocolate chips",
+   "output_b": "Vegan Chocolate Chip Cookies: \n\nIngredients: \n- 2 cups all-purpose flour \n- 1/2 cup cocoa powder \n- 1/2 teaspoon baking soda \n- 1/2 teaspoon baking powder \n- 1/2 teaspoon salt \n- 1/2 cup vegan butter \n- 1/2 cup brown sugar \n- 1/2 cup white sugar \n- 1/2 cup all-purpose white flour \n- 1/2 cup chopped nuts (optional) \n- 1/2 cup dried cranberries (optional) \n\nInstructions: \n1. Preheat oven to 350\u00b0F (175\u00b0C). \n2. In a medium bowl, mix together the flour, cocoa powder, baking soda, baking powder, and salt. \n3. In a large bowl, cream together the butter and sugars until light and fluffy. \n4. Beat in the egg and vanilla extract. \n5. Gradually add the dry ingredients to the wet ingredients and mix until just combined. \n6. Stir in the n",
+   "original_label": -1,
+   "id": 56
+  }
+ },
+ {
+  "data": {
+   "order_id": 785,
+   "instruction": "React properly to reviews from your customers. In your responses, you can highlight your business' policies and customer service.\nAnother repeat visit and no disappointment from us. Great place for breakfast or brunch - and you won't need to eat again for awhile. The restaurant is close to the Tenderloin so be aware of your surroundings.\nWe enjoyed the Succotash Omelet (at least my wife enjoyed it), the Pulled Pork Benedict and the Hangtown Fry. Portions are large and pricing is fair. I wish we could have managed a Beignet Flight!\nDefinitely a spot to seek out. It can be crowed at times so be patient. Well worth any wait.",
+   "output_a": "Another repeat visit and no disappointment from us. Great place for breakfast or brunch - and you won't need to eat again for awhile. The restaurant is close to the Tenderloin so be aware of your surroundings.\nWe enjoyed the Succotash Omelet (at least my wife enjoyed it), the Pulled Pork Benedict and the Hangtown Fry. Portions are large and pricing is fair. I wish we could have managed a Beignet Flight!",
+   "output_b": "Dear Customer,\n\nThank you for taking the time to share your experience with us. We are delighted to hear that you enjoyed your meal and found our service to be excellent. We strive to provide the best possible experience for all of our customers and it's great to hear that you had a great time.\n\nWe hope to see you again soon!\n\nSincerely,\n\n[Your Name]",
+   "original_label": -1,
+   "id": 57
+  }
+ },
+ {
+  "data": {
+   "order_id": 22,
+   "instruction": "Please answer the following question based on the information provided in the article.\nDevelopment studies is an interdisciplinary branch of social science. Development studies is offered as a specialized master's degree in a number of reputed universities around the world. It has grown in popularity as a subject of study since the early 1990s, and has been most widely taught and researched in developing countries and countries with a colonial history, such as the UK, where the discipline originated. Students of development studies often choose careers in international organisations such as the United Nations, World Bank, non-governmental organisations (NGOs), media and journalism houses, private sector development consultancy firms, corporate social responsibility (CSR) bodies and research centers.\nWhat are some popular careers for students of development studies?",
+   "output_a": "1. International organisations such as the United Nations, World Bank",
+   "output_b": "Some popular careers for students of development studies include international organizations such as the United Nations, World Bank, non-governmental organizations (NGOs), media and journalism houses, corporate social responsibility (CSR) bodies and research centers.",
+   "original_label": -1,
+   "id": 58
+  }
+ },
+ {
+  "data": {
+   "order_id": 541,
+   "instruction": "Make a list of the pros and cons of the given decision.\nImplementing a Remote Working Policy",
+   "output_a": "The pros of implementing a Remote Working Policy include: \n1. Increased flexibility and work-life balance. \n2. Reduced commuting time and costs. \n3. Increased productivity and efficiency. \n4. Increased employee engagement and motivation. \n5. Improved employee health and wellbeing. \n6. Reduced carbon emissions and environmental impact. \nThe cons of implementing a Remote Working Policy include: \n1. Lack of face-to-face contact and collaboration. \n2. Difficulty in monitoring and enforcing compliance. \n3. Potential for increased distraction and burnout. \n4. Potential for increased security risks. \n5. Difficulty in managing and motivating remote workers. \n6. Difficulty in managing and motivating remote teams.",
+   "output_b": "Pros: \n- Increased productivity\n- Reduced commute time\n- Improved morale\n- Reduced environmental impact\n- Increased flexibility\n- Improved communication\n- Improved collaboration\n- Reduced stress\n- Improved morale\n- Reduced environmental impact\n- Increased flexibility\n- Improved communication\n- Reduced stress\n- Improved collaboration\n- Reduced stress\n- Improved morale\n- Reduced environmental impact\n- Increased flexibility\n- Improved communication\n- Reduced stress\n- Improved morale\n- Reduced environmental impact\n- Increased flexibility\n- Improved communication\n- Reduced stress\n- Improved morale\n- Reduced environmental impact\n- Increased flexibility\n- Improved communication\n- Reduced stress\n- Improved morale\n- Reduced environmental impact\n- Increased flexibility\n- Improved communication\n- Reduced stress\n- Improved morale\n- Reduced environmental impact\n- Increased flexibility\n- Improved communication\n- Reduced stress\n- Improved morale\n- Reduced environmental impact\n- Increased flexibility\n- Improved communication\n- Reduced",
+   "original_label": 1,
+   "id": 59
+  }
+ },
+ {
+  "data": {
+   "order_id": 182,
+   "instruction": "Using a table, compare the career overviews of the given players in Major League Baseball. Use \"|\" for separating the columns in the table.\nDerek Jeter, Albert Pujols",
+   "output_a": "Derek Jeter | Major League Baseball\nAlbert Pujols | Major League Baseball",
+   "output_b": "| Derek Jeter | Albert Pujols |\n|-------------|-------------|\n| Position | Derek Jeter | Albert Pujols |\n| Batting Average | .310 | .328 |\n| Home Runs | 3,465 | 648 |\n| RBI | 1,996 | 1,114 |\n| Stolen Bases | 348 | 410 |\n| Fielding Percentage | .989 | .990 |\n| Wins Above Replacement (WAR) | 107.2 | 104.2 |",
+   "original_label": -1,
+   "id": 60
+  }
+ },
+ {
+  "data": {
+   "order_id": 266,
+   "instruction": "Give a brief summary of the intention of the dialogue that just happened.\nCustomer: Hi there, I'm looking for a new phone.\nAI: Hi! What type of phone are you looking for?\nCustomer: I'm not sure. Maybe something with a good camera?\nAI: We have a few phones with great cameras. Would you like to see some options?\nCustomer: Yeah, that would be great.",
+   "output_a": "Customer: Hi there, I'm looking for a new phone.\nAI: Hi! What type of phone are you looking for?\nCustomer: I'm not sure. Maybe something with a good camera?\nAI: We have a few phones with great cameras. Would you like to see some options?\nCustomer: Yeah, that would be great.",
+   "output_b": "The customer was looking for a phone with a good camera, and the AI suggested a few options.",
+   "original_label": -1,
+   "id": 61
+  }
+ },
+ {
+  "data": {
+   "order_id": 668,
+   "instruction": "You will be asked to answer the following question as part of the LinkedIn Skill assessments.\nYou find that your project has a tag and branch both named push-notifications, which causes confusion when trying to print out given reference. How can you specify which branch you want to look at?",
+   "output_a": "How can you specify which branch you want to look at?",
+   "output_b": "I would like to look at the branch named push-notifications.",
+   "original_label": -1,
+   "id": 62
+  }
+ },
+ {
+  "data": {
+   "order_id": 405,
+   "instruction": "Create a list of subtopics for the given topic.\nMusic theory",
+   "output_a": "Theory of pitch\nTheory of rhythm\nTheory of harmony\nTheory of melody\nTheory of timbre\nTheory of form\nTheory of counterpoint\nTheory of dynamics\nTheory of timbre\nTheory of counterpoint\nTheory of harmony\nTheory of form\nTheory of dynamics\nTheory of pitch\nTheory of rhythm\nTheory of harmony\nTheory of melody\nTheory of timbre\nTheory of form\nTheory of counterpoint\nTheory of dynamics\nTheory of pitch\nTheory of rhythm\nTheory of harmony\nTheory of melody\nTheory of timbre\nTheory of form\nTheory of counterpoint\nTheory of dynamics",
+   "output_b": "Subtopics for Music Theory:\n- Music Theory Basics \n- Music Theory Techniques \n- Music Theory Formats \n- Music Theory Instruments \n- Music Theory Styles \n- Music Theory Acoustics \n- Music Theory Repertoire",
+   "original_label": 1,
+   "id": 63
+  }
+ },
+ {
+  "data": {
+   "order_id": 114,
+   "instruction": "Design a medium-level sudoku puzzle.\n",
+   "output_a": "Medium-level sudoku puzzles are designed to challenge players of all skill levels. The puzzles contain a mix of easy, medium, and hard levels of difficulty. The puzzles also contain hints and tips to help players solve the puzzles.",
+   "output_b": "<noinput>",
+   "original_label": 1,
+   "id": 64
+  }
+ },
+ {
+  "data": {
+   "order_id": 350,
+   "instruction": "You will need to compose the ABC notation for a given song.\nThe South Wind",
+   "output_a": "A, B, C, D, E, F, G, H",
+   "output_b": "ABC",
+   "original_label": 0,
+   "id": 65
+  }
+ },
+ {
+  "data": {
+   "order_id": 93,
+   "instruction": "This is a test for the reading ability of French. Read the given story carefully, and then answer the question in the end.\nLucie est \u00e0 la maison avec sa petite-fille, Lin.\nLucie: Oh, non! Nous n'avons pas de pain!\nLin: Ah! Tu vas au supermarch\u00e9?\nLucie: Oui, je veux une baguette pour mon sandwich.\nDo Lin and Lucie have a lot of bread?",
+   "output_a": "Yes, Lin and Lucie have a lot of bread.",
+   "output_b": "Yes, they have a lot of bread.",
+   "original_label": 0,
+   "id": 66
+  }
+ },
+ {
+  "data": {
+   "order_id": 322,
+   "instruction": "Describe the responsibilities of the given job.\nSecurity Officer",
+   "output_a": "The Security Officer is responsible for ensuring the safety and security of people, property, and assets within their assigned area of responsibility. This includes patrolling the premises, responding to alarms, monitoring surveillance cameras, and interacting with the public.",
+   "output_b": "The Security Officer is responsible for providing security services to the organization. They are responsible for ensuring the safety of employees, visitors, and property. They are also responsible for responding to security incidents, such as alarms or suspicious activity. They are also responsible for maintaining the physical security of the organization, such as locking and unlocking doors.",
+   "original_label": -1,
+   "id": 67
+  }
+ },
+ {
+  "data": {
+   "order_id": 177,
+   "instruction": "Create a table listing all games that meet the specified criteria in the National Football League. Use the season, local time, game, and score as columns of the table.\nRavens home games in 2011",
+   "output_a": "Table: Ravens home games in 2011\nColumns: season, local time, game, score\nRows: games",
+   "output_b": "Table: Ravens home games in 2011",
+   "original_label": 1,
+   "id": 68
+  }
+ },
+ {
+  "data": {
+   "order_id": 935,
+   "instruction": "The movie tagline is the film's advertising slogan, usually printed on posters prior to the official release. It is a short description or comment on a movie to capture the essence of the movie, and ultimately make you watch the movie. Here is an example:\nMovie: Joker (2019)",
+   "output_a": "Laughter is the best medicine.",
+   "output_b": "Joker (2019) - A dark and twisted tale of one man's descent into madness.",
+   "original_label": 1,
+   "id": 69
+  }
+ },
+ {
+  "data": {
+   "order_id": 639,
+   "instruction": "Suggest some names for a friendly group in telegram.\n",
+   "output_a": "Friends of the Earth, Greenpeace, Sierra Club.",
+   "output_b": "Group Name: Friends",
+   "original_label": 1,
+   "id": 70
+  }
+ },
+ {
+  "data": {
+   "order_id": 818,
+   "instruction": "We've already decided on the title and topic for our blog post. I would appreciate it if you wrote an introduction paragraph to attract the readers' attention.\nBlog title: Healthy Apple Muffins\nBlog Topic: recipe and tips for cooking a good apple muffin",
+   "output_a": "Welcome to Healthy Apple Muffins! Today, I'm going to show you how easy it is to make a delicious and healthy apple muffin. With just a few simple ingredients, you can make a batch of these tasty muffins that are sure to be a hit with your family and friends.",
+   "output_b": "Healthy Apple Muffins: Recipe and Tips for Cooking a Good Apple Muffin.",
+   "original_label": 1,
+   "id": 71
+  }
+ },
+ {
+  "data": {
+   "order_id": 270,
+   "instruction": "Please write the Excel function name associated with each description.\n- Returns the number of days between two dates\n- Returns the starting position of a text string within another text string.\n- Returns the number in the middle of the set of given numbers",
+   "output_a": "- DAYS\n- LEFT\n- MID",
+   "output_b": "DateDiff, Left, Mid",
+   "original_label": 1,
+   "id": 72
+  }
+ },
+ {
+  "data": {
+   "order_id": 116,
+   "instruction": "Design a medium-level sudoku puzzle.\n",
+   "output_a": "A medium-level sudoku puzzle is a type of sudoku puzzle that is designed to be easy to solve, yet challenging enough to keep the solver engaged. The goal of a medium-level sudoku puzzle is to fill in the grid with the numbers from 1 to 9, so that each row, column, and 3x3 square contains the numbers 1, 2, 3, 4, 5, 6, 7, 8, 9.",
+   "output_b": "<noinput>",
+   "original_label": 1,
+   "id": 73
+  }
+ },
+ {
+  "data": {
+   "order_id": 101,
+   "instruction": "Provide a cooking hack for improving the flavor of the given food.\npopcorn",
+   "output_a": "To improve the flavor of popcorn, you can add a tablespoon of butter to the popped kernels. This will give the popcorn a richer, buttery flavor.",
+   "output_b": "A cooking hack for improving the flavor of popcorn is to add a pinch of salt to the popcorn before popping it. The salt helps to draw out the moisture in the popcorn, which helps to enhance the flavor.",
+   "original_label": -1,
+   "id": 74
+  }
+ },
+ {
+  "data": {
+   "order_id": 225,
+   "instruction": "Respond to the last text in the chat using the correct emojis to convey your feelings.\n+ Hey, how did your exams go?\n- They were alright. I'm just glad they're over.\n+ Yeah, I know how you feel. I'm just glad I don't have to worry about them anymore.",
+   "output_a": "<noinput>",
+   "output_b": "+ Hey, how did your exams go?\n- They were alright. I'm just glad they're over.\n+ Yeah, I know how you feel. I'm just glad I don't have to worry about them anymore.",
+   "original_label": -1,
+   "id": 75
+  }
+ },
+ {
+  "data": {
+   "order_id": 234,
+   "instruction": "The last message in the chat is a partial response. You should complete and rewrite it.\n+ What are going to do now?\n- I don't know. I had to give up my dream of being a mathematician.\n+ Why",
+   "output_a": "- I don't know. I had to give up my dream of being a mathematician.",
+   "output_b": "I had to give up my dream of being a mathematician because I couldn't find a job in the field.",
+   "original_label": -1,
+   "id": 76
+  }
+ },
+ {
+  "data": {
+   "order_id": 204,
+   "instruction": "Using a given amount, determine an appropriate tip.\n14% tip on $47.50",
+   "output_a": "The appropriate tip is $4.50.",
+   "output_b": "14% tip on $47.50 is $2.50.",
+   "original_label": 1,
+   "id": 77
+  }
+ },
+ {
+  "data": {
+   "order_id": 371,
+   "instruction": "Come up with an interesting idea for a new movie plot. Your plot should be described with a title and a summary.\n",
+   "output_a": "The movie follows the story of a small-town girl who moves to the big city in pursuit of her dreams. She faces many obstacles along the way, but eventually finds success and a new outlook on life.",
+   "output_b": "A group of friends embark on a road trip across the United States in search of a mysterious treasure. Along the way, they encounter a variety of strange and dangerous creatures, and must use their wits and courage to survive.",
+   "original_label": -1,
+   "id": 78
+  }
+ },
+ {
+  "data": {
+   "order_id": 123,
+   "instruction": "Solve the given Sudoku puzzle.\nThe Sudoku puzzle is:\n|1| |5| | | | |8| |\n| | | | | |3| |6|4|\n|8|3|4|6|7| |9| | |\n|2|9|1| | |8|3|7|6|\n| | |6| | |9|8|1| |\n| | | | | |2| | | |\n| |2| | |9|7|6| | |\n|5|4| | | | | |9|8|\n|6|1| | | |5|4|3|7|",
+   "output_a": "1 2 3 4 5 6 7 8 9",
+   "output_b": "The Sudoku puzzle has been solved.",
+   "original_label": 0,
+   "id": 79
+  }
+ },
+ {
+  "data": {
+   "order_id": 92,
+   "instruction": "This is a test for the reading ability of French. Read the given story carefully, and then answer the question in the end.\nLucie est \u00e0 la maison avec sa petite-fille, Lin.\nLucie: Oh, non! Nous n'avons pas de pain!\nLin: Ah! Tu vas au supermarch\u00e9?\nLucie: Oui, je veux une baguette pour mon sandwich.\nDo Lin and Lucie have a lot of bread?",
+   "output_a": "Yes, Lin and Lucie have a lot of bread.",
+   "output_b": "No, Lucie and Lin do not have a lot of bread.",
+   "original_label": -1,
+   "id": 80
+  }
+ },
+ {
+  "data": {
+   "order_id": 23,
+   "instruction": "Please answer the following question based on the information provided in the article.\nDevelopment studies is an interdisciplinary branch of social science. Development studies is offered as a specialized master's degree in a number of reputed universities around the world. It has grown in popularity as a subject of study since the early 1990s, and has been most widely taught and researched in developing countries and countries with a colonial history, such as the UK, where the discipline originated. Students of development studies often choose careers in international organisations such as the United Nations, World Bank, non-governmental organisations (NGOs), media and journalism houses, private sector development consultancy firms, corporate social responsibility (CSR) bodies and research centers.\nWhat are some popular careers for students of development studies?",
+   "output_a": "Some popular care",
+   "output_b": "Some popular careers for students of development studies include international organisations such as the United Nations, World Bank, non-governmental organisations (NGOs), media and journalism houses, corporate social responsibility (CSR) bodies and research centers.",
+   "original_label": -1,
+   "id": 81
+  }
+ },
+ {
+  "data": {
+   "order_id": 566,
+   "instruction": "You are given a tweet and you should decide whether it's offensive or not.\nShe has certainly taken some heat for being such an....well idiot.",
+   "output_a": "Offensive",
+   "output_b": "She has certainly taken some heat for being an idiot.",
+   "original_label": 1,
+   "id": 82
+  }
+ },
+ {
+  "data": {
+   "order_id": 463,
+   "instruction": "Provide a pleasant compliment based on the quality you have been given.\nTruthfulness",
+   "output_a": "Your honesty is admirable.",
+   "output_b": "You have been given the gift of truthfulness.",
+   "original_label": 1,
+   "id": 83
+  }
+ },
+ {
+  "data": {
+   "order_id": 953,
+   "instruction": "Give a brief summary of the movie or series' plot.\nBreaking Bad (TV Series 2008\u20132013)",
+   "output_a": "Breaking Bad tells the story of Walter White, a chemistry professor who is struggling to make ends meet after his wife and unborn child are killed in a car accident. With the help of his former student, Jesse Pinkman, he begins to manufacture methamphetamine in order to make enough money to pay for his family's funeral. Along the way, he learns the importance of morality and the consequences of his actions.",
+   "output_b": "Breaking Bad follows the story of Walter White, a high school chemistry teacher who turns to a life of crime after being diagnosed with terminal cancer. He partners with his former student, Jesse Pinkman, to produce and sell illegal drugs. With the money he earns, Walter is able to pay off his medical bills and provide for his family. However, his criminal activities attract the attention of the DEA, and he is forced to flee to start a new life.",
+   "original_label": -1,
+   "id": 84
+  }
+ },
+ {
+  "data": {
+   "order_id": 779,
+   "instruction": "Prepare an email signature template for the given person or company.\na graduate student of computer science",
+   "output_a": "<no-output>",
+   "output_b": "Name: [Name]\n\nEmail: [Email]\n\nPhone Number: [Phone Number]\n\nAddress Line 1: [Address Line 1]\n\nCity: [City]\n\nState: [State]\n\nZip Code: [Zip Code]\n\nCountry: [Country]",
+   "original_label": -1,
+   "id": 85
+  }
+ },
+ {
+  "data": {
+   "order_id": 724,
+   "instruction": "How would you describe the meaning of this lyrics? Describe some of the metaphors.\nMy lover\u2019s got humor\nShe\u2019s the giggle at a funeral\nKnows everybody\u2019s disapproval\nI should\u2019ve worshipped her sooner",
+   "output_a": "My lover\u2019s got humor,\nShe\u2019s the giggle at a funeral,\nKnows everybody\u2019s disapproval.",
+   "output_b": "Metaphor 1: My lover\u2019s got humor\nMetaphor 2: She\u2019s the giggle at a funeral\nMetaphor 3: Knows everybody\u2019s disapproval\nMetaphor 4: I should\u2019ve worshipped her sooner.",
+   "original_label": -1,
+   "id": 86
+  }
+ },
+ {
+  "data": {
+   "order_id": 601,
+   "instruction": "Write a template for First-Person LinkedIn profile summary.\n",
+   "output_a": "Welcome to my profile on LinkedIn! My name is [Name], and I'm passionate about [topic]. I'm looking forward to connecting with like-minded professionals and learning from their experiences.",
+   "output_b": "<nooutput>",
+   "original_label": 1,
+   "id": 87
+  }
+ },
+ {
+  "data": {
+   "order_id": 901,
+   "instruction": "Discuss the origins and history of the word that has been given to you.\noblique",
+   "output_a": "The word that has been given to you is oblique.",
+   "output_b": "The word \"oblique\" is derived from the Latin word obliquus, which means \"angled\". It is used to describe an object that is at an angle to something else.",
+   "original_label": -1,
+   "id": 88
+  }
+ },
+ {
+  "data": {
+   "order_id": 355,
+   "instruction": "You will need to compose the ABC notation for a given song.\nThe South Wind",
+   "output_a": "ABC",
+   "output_b": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z",
+   "original_label": 0,
+   "id": 89
+  }
+ },
+ {
+  "data": {
+   "order_id": 581,
+   "instruction": "Categorize the Business into one of the Restaurants, Home Services, Auto Services and Miscellaneous based on its Specialties.\nCall us at 650-636-4884 or visit our website to receive a quote. This shop specializes in New Tires and General Auto Repair. We carry all tires in-house and have a wide range to fit any budget or car specifics. If you are unsure what tires you need there are experts on hand and available to help you pick the best tire for your needs. We also carry commercial vehicle tires and can serve a wide array of fleets.",
+   "output_a": "Restaurants",
+   "output_b": "Home Services",
+   "original_label": 0,
+   "id": 90
+  }
+ },
+ {
+  "data": {
+   "order_id": 385,
+   "instruction": "I bought two shirts from the store and each one cost me $10. I also bought a pair of pants and they cost me $20. Then, I bought a dress and it cost me $30. Also, I bought a pair of shoes and they cost me $40. Lastly, I bought a jacket and it cost me $50.\n\nMake a table chart showing items, the number, and the price of these items. Separate columns with \"|\".\n",
+   "output_a": "| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |",
+   "output_b": "| Item | Number | Price |\n| --- | --- | --- |\n| Shirt | 2 | $10 |\n| Pants | 1 | $20 |\n| Dress | 1 | $30 |\n| Shoes | 1 | $40 |\n| Jacket | 1 | $50 |",
+   "original_label": -1,
+   "id": 91
+  }
+ },
+ {
+  "data": {
+   "order_id": 280,
+   "instruction": "Describe the content of the article in a brief manner.\nA study published earlier this year by Zee and her team examined the role of light in sleep for healthy adults in their 20s. Sleeping for only one night with a dim light, such as a TV set with the sound off, raised the blood sugar and heart rate of the young people during the sleep lab experiment. An elevated heart rate at night has been shown in prior studies to be a risk factor for future heart disease and early death, while higher blood sugar levels are a sign of insulin resistance, which can ultimately lead to type 2 diabetes.",
+   "output_a": "The study published earlier this year by Zee and her team examined the role of light in sleep for healthy adults in their 20s. The study found that sleeping for one night with a dim light, such as a TV set with the sound off, raised the blood sugar and heart rate of the young people during the sleep lab experiment. An elevated heart rate at night has been shown in prior studies to be a risk factor for future heart disease and early death, while higher blood sugar levels are a sign of insulin resistance, which can ultimately lead to type 2 diabetes.",
+   "output_b": "A study published earlier this year by Zee and her team examined the role of light in sleep for healthy adults in their 20s.",
+   "original_label": -1,
+   "id": 92
+  }
+ },
+ {
+  "data": {
+   "order_id": 618,
+   "instruction": "Decide which part of speech the underlined word belongs to.\nschool will _keep through the winter",
+   "output_a": "school",
+   "output_b": "Adverb",
+   "original_label": 0,
+   "id": 93
+  }
+ },
+ {
+  "data": {
+   "order_id": 896,
+   "instruction": "Find synonyms for the given word. You need to write down how the provided synonyms differ from the original word in terms of meaning, usage, etc.\nadversity",
+   "output_a": "difficulty, hardship, misfortune, trial, tribulation, ordeal.",
+   "output_b": "Adversity: misfortune, misfortune, misfortune, misfortune.",
+   "original_label": 1,
+   "id": 94
+  }
+ },
+ {
+  "data": {
+   "order_id": 877,
+   "instruction": "You should choose a YouTube video title based on the video's content. A video's title tells viewers what to expect from it. It should be direct, honest, and clear. The title of the video needs to capture the attention of viewers, so do not use an unclear or ambiguous one.\nA research study has been conducted to determine if exercise really can \"boost\" your metabolism.",
+   "output_a": "A research study has been conducted to determine if exercise really can \"boost\" your metabolism.",
+   "output_b": "Exercise Boosts Metabolism",
+   "original_label": -1,
+   "id": 95
+  }
+ },
+ {
+  "data": {
+   "order_id": 12,
+   "instruction": "An evaluation of the article's quality should be carried out. In order to do so, you should review the quality of the writing and the explanation of the topic.\nThe 20th century saw a revolution in music listening as the radio gained popularity worldwide and new media and technologies were developed to record, edit and distribute music. Music performances became increasingly visual with the broadcast and recording of performances.\n20th-century music brought new freedom and wide experimentation with new musical styles and forms that challenged the accepted rules of music of earlier periods. The invention of musical amplification and electronic instruments, especially the synthesizer, in the mid-20th century revolutionized classical and popular music, and accelerated the development of new forms of music.",
+   "output_a": "The article is of good quality and provides a comprehensive overview of the topic.",
+   "output_b": "The article is well-written and provides a comprehensive overview of the topic. The writing is clear and concise, and the explanation of the topic is well-structured and well-structured. The writing is well-structured and well-structured, and the explanation of the topic is well-structured and well-structured.",
+   "original_label": 1,
+   "id": 96
+  }
+ },
+ {
+  "data": {
+   "order_id": 35,
+   "instruction": "Please list the courses that someone interested in the first course might like.\nBitcoin and Cryptocurrency Technologies",
+   "output_a": "Bitcoin and Cryptocurrency Technologies",
+   "output_b": "1. Introduction to Bitcoin and Cryptocurrency Technologies\n2. Advanced Bitcoin and Cryptocurrency Technologies",
+   "original_label": -1,
+   "id": 97
+  }
+ },
+ {
+  "data": {
+   "order_id": 759,
+   "instruction": "If you could help me write an email to my friends inviting them to dinner on Friday, it would be greatly appreciated.\n",
+   "output_a": "Dear Friends,\n\nI hope you can join me for dinner on Friday. It would be a great time to catch up and catch up with each other. I look forward to seeing you all.\n\nBest,",
+   "output_b": "Dear Friends,\n\nI am writing to invite you to join me for dinner on Friday. I am looking forward to spending time with you and catching up on all the news. Please let me know if you can make it.\n\nBest,\n[Your Name]",
+   "original_label": -1,
+   "id": 98
+  }
+ },
+ {
+  "data": {
+   "order_id": 391,
+   "instruction": "List the concepts that should be learned before approaching the given complex concept.\nDeep Learning",
+   "output_a": "1. Machine Learning\n2. Neural Networks\n3. Convolutional Neural Networks\n4. Recurrent Neural Networks\n5. Generative Adversarial Networks\n6. Image Classification\n7. Speech Recognition\n8. Natural Language Processing\n9. Computer Vision\n10. Robotics",
+   "output_b": "1. Convolutional Neural Networks (CNNs)\n2. Recurrent Neural Networks (RNNs)\n3. Long Short-Term Memory Networks (LSTMs)\n4. Recurrent Neural Networks (RNNs)\n5. Convolutional Neural Networks (CNNs)\n6. Long Short-Term Memory Networks (LSTMs)\n7. Recurrent Neural Networks (RNNs)\n8. Long Short-Term Memory Networks (LSTMs)\n9. Convolutional Neural Networks (CNNs)\n10. Long Short-Term Memory Networks (LSTMs)",
+   "original_label": 1,
+   "id": 99
+  }
+ }
+]

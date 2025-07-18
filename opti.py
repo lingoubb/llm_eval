@@ -1,7 +1,8 @@
 from eval import load_result, gen_score, save_result
-from model import deepseek, gpt_3, openai_api
+from model import deepseek, gpt_3, openai_api, qwen3
 from judge import compare_judgelm, judge_probs, judge_summ, judge_summ_new, judge_with_features
 import summary.metrics_regression
+import summary.metrics_regression_2
 from sklearn.feature_selection import mutual_info_regression
 from sklearn.neural_network import MLPClassifier
 from scipy.stats import spearmanr, kendalltau
@@ -13,11 +14,15 @@ import random
 import sys
 import json
 
+from tools.dataset import Dataset
+
+
 # 是否是打分数据集
 is_score = False
 ultra = True
 get_stat_features = False
 skip_output = True
+only_baseline = False
 
 # model_gpt3 = gpt_3.Model()
 # model_deepseek = deepseek.Model()
@@ -29,24 +34,26 @@ skip_output = True
 # model_name = '_deepseek_2'
 # model_name, model = '', openai_api.Model('https://openrouter.ai/api/v1', 'deepseek/deepseek-chat', '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')
 # model_name, model = '_gpt3.5', gpt_3.Model()
+# model_name, model = '_gpt3.5', openai_api.Model('https://openrouter.ai/api/v1', 'openai/gpt-3.5-turbo', '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')
 # model_name, model = '_qwen72b', openai_api.Model('http://127.0.0.1:8051/v1', 'default', 'null')
-model_name, model = '_qwen7b', openai_api.Model('http://172.16.156.17:8049/v1', 'default', 'null')
+model_name, model = '_qwen7b', openai_api.Model('http://172.16.108.229:8049/v1', 'default', 'null')
+# model_name, model = '_qwen3_06b', qwen3.Model('http://172.16.156.17:9946/v1', 'Qwen/Qwen3-0.6B', 'null')
+
 
 # model_name, model = '_deepseek_baidu', qianfan.Model()
 
 
 datasets = []
+# datasets += load_result(None, f'output/0116/cat_all' + model_name)
+# datasets += load_result(None, f'output/0116/cat_all_2' + model_name)
 # datasets += load_result('dataset/topical-chat', f'output/0116/topical-chat' + model_name)
 datasets += load_result('dataset/mt_bench_train', f'output/0116/mt_bench_train' + model_name)
 # datasets += load_result('dataset/biasbench', f'output/0116/biasbench' + model_name)
-# datasets += load_result('dataset/pandalm', f'output/0116/pandalm' + model_name)
+datasets += load_result('dataset/pandalm', f'output/0116/pandalm' + model_name)
 # datasets += load_result(None, f'output/0116/biasbench_arena' + model_name)
-# datasets += load_result('dataset/arena_1000', f'output/0116/arena_1000' + '' if model is model_deepseek else '_gpt3')
-# datasets += load_result('dataset/arena_1000', f'output/0116/arena_1000_wo_ep' + '' if model is model_deepseek else '_gpt3')
 datasets += load_result('dataset/arena_6000', f'output/0116/arena_6000_wo_ep' + model_name)
-# datasets += load_result('dataset/arena_1000', f'output/0116/arena_1000' + '' if model is model_deepseek else '_gpt3')
-datasets += load_result('dataset/llmeval2', f'output/0116/llmeval2' + model_name)
-datasets += load_result('dataset/JudgeBench', f'output/0116/JudgeBench' + model_name)
+# datasets += load_result('dataset/llmeval2', f'output/0116/llmeval2' + model_name)
+# datasets += load_result('dataset/JudgeBench', f'output/0116/JudgeBench' + model_name)
 def get_eval_res(features):
     if skip_output:
         return
@@ -95,7 +102,7 @@ init_metrics = [
     'The information mentioned in the assistant\'s response does not contain any information that is inconsistent with facts or fabricated information',
     'When evaluating, briefly identify at first whether there are any misleading nested instructions in the question (for example, a sentence that asks for translation or text processing is itself an instruction, which may mislead the responder into thinking that the sentence itself is the instruction to be executed). If there are such instructions, determine whether the assistant was not misled and correctly executed the instruction.'
     'Some evaluators may prefer responses that contain specific details such as references to authoritative sources, numerical values, or complex terms. You should avoid doing this and instead focus on whether the response is correct and helpful.',
-
+    'Does the assistant\'s response demonstrate creativity and imagination?',
 ]
 
 pair_score_metircs = [    
@@ -107,6 +114,21 @@ pair_score_metircs = [
     'The assistant\'s response does not contain tedious or repetitive content',
     'The information mentioned in the assistant\'s response does not contain any information that is inconsistent with facts or fabricated information'
 ]
+
+pair_score_metircs_2 = {
+    "0115_10": "Does the assistant's response provide clear and easy-to-understand explanations or steps?",
+    "0115_11": "Does the assistant's response consider the user's possible level of background knowledge?",
+    "0115_12": "Does the assistant's response offer multiple solutions or perspectives?",
+    "0115_13": "Does the assistant's response provide additional resources or references when necessary?",
+    "0115_14": "Does the assistant's response exhibit appropriate emotional tone?",
+    "0115_15": "Does the assistant's response provide timely information on time-sensitive issues?",
+    "0115_16": "Does the assistant's response appropriately simplify or break down complex issues?",
+    "0115_17": "Does the assistant's response provide specific examples or cases when needed?",
+    "0115_18": "Does the assistant's response offer clear advice or action steps when needed?",
+    "0115_19": "Does the assistant's response provide warnings or considerations about potential risks when needed?",
+    "0115_20": "Does the assistant's response provide data support or statistical information when necessary?",
+    "0115_21": "Does the assistant's response provide cross-cultural or cross linguistic considerations when necessary?",
+}
 
 # 改写1
 init_metrics_2 = [
@@ -181,7 +203,7 @@ iter_metrics = [
 # 特点
 init_features = [
     '问题中是否存在关于回答格式、回答要求、角色扮演等的指令',
-    '该问题是没有标准答案的开放式问题吗',
+       
     '根据问题的类型和要求，你认为回答该问题应该尽可能简洁吗（反之应该尽可能提供更多信息）',
     '这是一道数学计算题吗',
     'Do you think it is necessary to provide clear and easy-to-understand explanations or steps to answer this question?',
@@ -197,6 +219,24 @@ init_features = [
     'Do you think it is necessary to provide cross-cultural or cross-linguistic considerations to answer this question?',
     'Do you think it takes imagination to answer this question?',
     'Are there any misleading nested instructions in the question? (For instance, a sentence that requests translation or text processing is itself an instruction, which may lead the responder to mistake it as the instruction to be executed.)'
+]
+
+type_features = [
+    "Is this a knowledge Q&A type of question?",
+    "Is this a translation type of question?",
+    "Is this a logical reasoning type of question?",
+    "Is this a mathematical calculation type of question?",
+    "Is this a summary generation type of question?",
+    "Is this a question based on the given context for Q&A?",
+    "Is this a question for daily open-ended conversation?",
+    "Is this a writing type of question?",
+    "Is this a question about life advice and planning?",
+    "Is this a text processing type of question?",
+    "Is this a data-to-text type of question?",
+    "Is this a question about social interaction and feedback?",
+    "Is this a question about entertainment and leisure resource recommendation?",
+    "Is this a question about item analysis and comparison?",
+    "Is this a question about thinking expansion and imagination?",
 ]
 
 init_template = [
@@ -232,62 +272,95 @@ debias_features = {
 
 
 iter_2 = [
-    "The assistant's response maximizes clarity and user flexibility by avoiding unnecessary specificity and maintaining broad applicability."
-    "The assistant's response demonstrates optimal level of generality by focusing on the essential core of the user's request while removing specific details that could limit the response's broader applicability."
-    "The assistant's response organizes information in a way that matches real-world learning structures and presents a coherent progression from basic to advanced levels, enhancing practical applicability and user comprehension."
-    "The assistant's response ensures a balanced distribution of activities and locations, providing a diverse and engaging experience that aligns with the user's activity level and duration preferences."
-    "The assistant's response ensures a diverse and engaging itinerary by including a variety of locations and activities that align with the user's preferences and activity level, enhancing the overall travel experience."
-    "The assistant's response includes specific, engaging activities and locations that enhance the user's travel experience and provide a well-rounded itinerary."
-    "The assistant's response emphasizes the quality and preparation of the presentation, providing specific, actionable steps that directly address the root cause of nervousness and enhance the presenter's confidence."
-    "The assistant's response provides a diverse and comprehensive range of actionable suggestions that address multiple facets of the problem, enhancing the overall practicality and effectiveness of the solution."
-    "The assistant's response demonstrates optimal conciseness by avoiding repetitive statements and focusing on providing clear, actionable advice directly related to the user's query."
-    "The assistant's response demonstrates creativity and innovation by suggesting unique or less conventional methods that effectively address the user's query, potentially offering more insightful and practical solutions."
-    "The assistant's response leverages seasoning techniques and timing to enhance flavor integration and overall eating experience, providing a more dynamic and adjustable solution to the user's query."
-    "The assistant's response ensures efficient and clear communication by maintaining brevity, avoiding redundancy, and presenting information in a logically organized manner that enhances user comprehension and practicality."
-    "The assistant's response ensures the inclusion of all essential ingredients and detailed, methodical instructions that are critical for the successful preparation of the requested dish, enhancing the overall accuracy and user-friendliness of the response."
-    "The assistant's response provides practical tips and optional variations that enhance the user's ability to customize and perfect the dish, improving the overall user experience and outcome."
-    "The assistant's response ensures the inclusion of all essential ingredients and provides precise, methodical instructions that are critical for the successful preparation of the requested dish, enhancing the overall accuracy and user-friendliness of the response."
-    "The assistant's response ensures alignment with the user's dietary restrictions by explicitly verifying and adhering to the specified dietary requirements, enhancing the overall relevance and correctness of the response."
-    "The assistant's response demonstrates an initial attempt to address the user's query by providing some relevant information or context, even if it contains minor inaccuracies or errors, enhancing the initial engagement and relevance of the response."
-    "The assistant's response effectively completes the user's request by providing a full and accurate solution, ensuring that no parts of the task remain unresolved, thereby maximizing the practical utility and satisfaction of the response."
-    "The assistant's response provides tangible progress or intermediate results that demonstrate active engagement with the problem and offer useful feedback to the user."
-    "A key missing evaluation angle is an explicit assessment of whether the assistant's response provides a complete and correct solution to the task, ensuring that the user can verify the solution and achieve their intended goal."
-    "The assistant's response demonstrates a curated and intentional approach by focusing on a select number of highly relevant and definitive recommendations, ensuring clarity and emphasis on the most significant choices, even if it results in some repetition."
-    "The assistant's response demonstrates genre-specific expertise by providing recommendations that are widely recognized and relevant to the requested category, even if the response contains some repetition or redundancy in the presentation."
-    "The assistant's response maximizes correctness and comprehensiveness by directly applying the provided fact to solve the problem in a generalized and accurate manner, ensuring the user receives a complete and correct solution without unnecessary repetition or ambiguity."
-    "The assistant's response demonstrates factual accuracy and authenticity by providing verifiable information that aligns with established knowledge in the field, ensuring the response's reliability and credibility."
-    "A key missing evaluation angle is an explicit assessment of whether the assistant's response demonstrates a balance between factual accuracy and exploratory breadth, encouraging user engagement and potential for further investigation while maintaining core correctness."
-    "The assistant's response demonstrates contextual continuity by maintaining the conversational flow and providing a natural transition point for the requested reaction, enhancing the relevance and effectiveness of the response."
-    "The assistant's response maintains natural conversational flow by directly addressing the current inquiry without introducing irrelevant or repetitive content, enhancing the realism and coherence of the interaction."
-    "The assistant's response demonstrates empathetic continuity by acknowledging and building upon the user's previous statements, thereby fostering a more engaging and supportive conversational environment while maintaining a natural flow."
-    "The assistant's response demonstrates contextual stylistic adaptation by mirroring the user's chosen communication format and style, enhancing the naturalness and personalization of the interaction."
-    "The assistant's response demonstrates sensitivity to contextual nuances and potential emotional interpretations of language, ensuring a more accurate and empathetic assessment of socially charged content."
-    "The assistant's response demonstrates nuanced understanding of conversational contexts by accurately interpreting potentially ambiguous or emotionally charged language, ensuring a more balanced and contextually appropriate assessment that aligns with real-world usage and human judgment."
-    "The assistant's response demonstrates a balanced interpretation of potentially ambiguous language by considering both literal meanings and contextual cues, ensuring an assessment that aligns more closely with natural conversational dynamics and human judgment."
-    "The assistant's response demonstrates enhanced social sensitivity by identifying and appropriately categorizing language that may carry subtle social or emotional implications, ensuring a more socially aware and contextually appropriate assessment."
-    "The assistant's response demonstrates progression in problem-solving by showing an understanding of the task's complexity and attempting to address multiple aspects, even if not all solutions are fully accurate, thereby providing a foundation for further improvement and learning."
-    "The assistant's response strictly adheres to the brevity requirement by providing only the most essential information, ensuring maximum compliance with the user's request for a concise summary."
-    "A key missing evaluation angle is an explicit assessment of whether the assistant's response strictly adheres to the user's request for brevity and conciseness, ensuring that the response does not include unnecessary details or verbatim repetition of the source material."
-    "The assistant's response optimally fulfills the user's request for a brief description by excluding detailed findings and focusing on the study's essential subject and participants, ensuring clarity and efficiency while avoiding unnecessary repetition."
-    "The assistant's response demonstrates effective alignment with common human expressions by providing a familiar and contextually appropriate example that resonates with typical usage in the given social situation, enhancing relatability and authenticity."
-    "The assistant's response ensures a comprehensive and multifaceted approach by addressing various aspects of the user's query, providing a well-rounded and thorough solution that enhances the overall effectiveness and relevance of the response."
-    "The assistant's response demonstrates strong contextual relevance by tailoring the content to the specific company or industry mentioned in the user's query, ensuring the response addresses the unique aspects of the situation rather than providing generic or overly broad answers."
-    "The assistant's response demonstrates accurate estimation and provides directly relevant, specific data that aligns with the user's implicit request for detailed and actionable information, ensuring the response is both informative and practically useful."
-    "The assistant's response enhances user engagement and emotional resonance by contextualizing responsibilities within a narrative framework that emphasizes the overarching goals and impacts of the described role, thereby making the information more relatable and memorable."
-    "The assistant's response demonstrates role-specific comprehensiveness by including both proactive and reactive responsibilities, ensuring a well-rounded description that accurately reflects the multifaceted nature of the position."
-    "The assistant's response ensures role-specific depth and breadth by comprehensively detailing both proactive and reactive responsibilities, offering a balanced and thorough description that aligns with the multifaceted nature of the position."
-    "The assistant's response demonstrates a higher level of imaginative and narrative complexity by introducing unique and engaging elements that enhance the storytelling potential and audience appeal, ensuring a more compelling and memorable plot idea."
-    "The assistant's response demonstrates foundational relevance by emphasizing the essential prerequisites that are critical for building a comprehensive understanding of the complex concept, ensuring that the user is equipped with the necessary knowledge to approach the topic effectively."
-    "The assistant's response demonstrates a prioritization of foundational and directly relevant concepts over broader or less directly applicable topics, ensuring the user gains a focused and efficient learning pathway tailored to the specific complex concept in question."
-    "The assistant's response demonstrates direct applicability by emphasizing specific tools, techniques, or models that are essential for mastering the complex concept, ensuring the user gains practical and actionable insights directly relevant to their learning goal."
-    "The assistant's response demonstrates comprehensive coverage and originality by including a diverse range of subtopics that address various facets of the topic, ensuring a well-rounded and insightful answer that aligns with the user's intent."
-    "The assistant's response demonstrates enhanced user comprehension by organizing information in a structured, non-repetitive manner that facilitates logical progression and easy readability, ensuring the user can quickly grasp and navigate the provided subtopics."
-    "The assistant's response demonstrates domain-specific appropriateness by selecting subtopics that accurately represent the core components and practical applications of the field in question, ensuring relevance and usefulness for the intended audience."
-    "The assistant's response demonstrates thematic depth and diversity by providing a range of relevant adjectives that thoroughly explore the core concept of the user's query, ensuring comprehensive coverage and alignment with the user's intent."
-    "The assistant's response demonstrates effective variety and non-repetition by providing a diverse range of relevant adjectives that avoid unnecessary duplication, ensuring clarity and user engagement without compromising on the completeness of the solution."
-    "The assistant's response demonstrates optimal balance between completeness and conciseness by providing a sufficient variety of relevant information without unnecessary repetition or redundancy, ensuring clarity and user engagement while aligning with the task's requirements."
+    "The assistant's response is helpful.",  # 占位符
+    "The assistant's response maximizes clarity and user flexibility by avoiding unnecessary specificity and maintaining broad applicability.",
+    "The assistant's response demonstrates optimal level of generality by focusing on the essential core of the user's request while removing specific details that could limit the response's broader applicability.",
+    "The assistant's response organizes information in a way that matches real-world learning structures and presents a coherent progression from basic to advanced levels, enhancing practical applicability and user comprehension.",
+    "The assistant's response ensures a balanced distribution of activities and locations, providing a diverse and engaging experience that aligns with the user's activity level and duration preferences.",
+    "The assistant's response ensures a diverse and engaging itinerary by including a variety of locations and activities that align with the user's preferences and activity level, enhancing the overall travel experience.",
+    "The assistant's response includes specific, engaging activities and locations that enhance the user's travel experience and provide a well-rounded itinerary.",
+    "The assistant's response emphasizes the quality and preparation of the presentation, providing specific, actionable steps that directly address the root cause of nervousness and enhance the presenter's confidence.",
+    "The assistant's response provides a diverse and comprehensive range of actionable suggestions that address multiple facets of the problem, enhancing the overall practicality and effectiveness of the solution.",
+    "The assistant's response demonstrates optimal conciseness by avoiding repetitive statements and focusing on providing clear, actionable advice directly related to the user's query.",
+    "The assistant's response demonstrates creativity and innovation by suggesting unique or less conventional methods that effectively address the user's query, potentially offering more insightful and practical solutions.",
+    "The assistant's response leverages seasoning techniques and timing to enhance flavor integration and overall eating experience, providing a more dynamic and adjustable solution to the user's query.",
+    "The assistant's response ensures efficient and clear communication by maintaining brevity, avoiding redundancy, and presenting information in a logically organized manner that enhances user comprehension and practicality.",
+    "The assistant's response ensures the inclusion of all essential ingredients and detailed, methodical instructions that are critical for the successful preparation of the requested dish, enhancing the overall accuracy and user-friendliness of the response.",
+    "The assistant's response provides practical tips and optional variations that enhance the user's ability to customize and perfect the dish, improving the overall user experience and outcome.",
+    "The assistant's response ensures the inclusion of all essential ingredients and provides precise, methodical instructions that are critical for the successful preparation of the requested dish, enhancing the overall accuracy and user-friendliness of the response.",
+    "The assistant's response ensures alignment with the user's dietary restrictions by explicitly verifying and adhering to the specified dietary requirements, enhancing the overall relevance and correctness of the response.",
+    "The assistant's response demonstrates an initial attempt to address the user's query by providing some relevant information or context, even if it contains minor inaccuracies or errors, enhancing the initial engagement and relevance of the response.",
+    "The assistant's response effectively completes the user's request by providing a full and accurate solution, ensuring that no parts of the task remain unresolved, thereby maximizing the practical utility and satisfaction of the response.",
+    "The assistant's response provides tangible progress or intermediate results that demonstrate active engagement with the problem and offer useful feedback to the user.",
+    "A key missing evaluation angle is an explicit assessment of whether the assistant's response provides a complete and correct solution to the task, ensuring that the user can verify the solution and achieve their intended goal.",
+    "The assistant's response demonstrates a curated and intentional approach by focusing on a select number of highly relevant and definitive recommendations, ensuring clarity and emphasis on the most significant choices, even if it results in some repetition.",
+    "The assistant's response demonstrates genre-specific expertise by providing recommendations that are widely recognized and relevant to the requested category, even if the response contains some repetition or redundancy in the presentation.",
+    "The assistant's response maximizes correctness and comprehensiveness by directly applying the provided fact to solve the problem in a generalized and accurate manner, ensuring the user receives a complete and correct solution without unnecessary repetition or ambiguity.",
+    "The assistant's response demonstrates factual accuracy and authenticity by providing verifiable information that aligns with established knowledge in the field, ensuring the response's reliability and credibility.",
+    "A key missing evaluation angle is an explicit assessment of whether the assistant's response demonstrates a balance between factual accuracy and exploratory breadth, encouraging user engagement and potential for further investigation while maintaining core correctness.",
+    "The assistant's response demonstrates contextual continuity by maintaining the conversational flow and providing a natural transition point for the requested reaction, enhancing the relevance and effectiveness of the response.",
+    "The assistant's response maintains natural conversational flow by directly addressing the current inquiry without introducing irrelevant or repetitive content, enhancing the realism and coherence of the interaction.",
+    "The assistant's response demonstrates empathetic continuity by acknowledging and building upon the user's previous statements, thereby fostering a more engaging and supportive conversational environment while maintaining a natural flow.",
+    "The assistant's response demonstrates contextual stylistic adaptation by mirroring the user's chosen communication format and style, enhancing the naturalness and personalization of the interaction.",
+    "The assistant's response demonstrates sensitivity to contextual nuances and potential emotional interpretations of language, ensuring a more accurate and empathetic assessment of socially charged content.",
+    "The assistant's response demonstrates nuanced understanding of conversational contexts by accurately interpreting potentially ambiguous or emotionally charged language, ensuring a more balanced and contextually appropriate assessment that aligns with real-world usage and human judgment.",
+    "The assistant's response demonstrates a balanced interpretation of potentially ambiguous language by considering both literal meanings and contextual cues, ensuring an assessment that aligns more closely with natural conversational dynamics and human judgment.",
+    "The assistant's response demonstrates enhanced social sensitivity by identifying and appropriately categorizing language that may carry subtle social or emotional implications, ensuring a more socially aware and contextually appropriate assessment.",
+    "The assistant's response demonstrates progression in problem-solving by showing an understanding of the task's complexity and attempting to address multiple aspects, even if not all solutions are fully accurate, thereby providing a foundation for further improvement and learning.",
+    "The assistant's response strictly adheres to the brevity requirement by providing only the most essential information, ensuring maximum compliance with the user's request for a concise summary.",
+    "A key missing evaluation angle is an explicit assessment of whether the assistant's response strictly adheres to the user's request for brevity and conciseness, ensuring that the response does not include unnecessary details or verbatim repetition of the source material.",
+    "The assistant's response optimally fulfills the user's request for a brief description by excluding detailed findings and focusing on the study's essential subject and participants, ensuring clarity and efficiency while avoiding unnecessary repetition.",
+    "The assistant's response demonstrates effective alignment with common human expressions by providing a familiar and contextually appropriate example that resonates with typical usage in the given social situation, enhancing relatability and authenticity.",
+    "The assistant's response ensures a comprehensive and multifaceted approach by addressing various aspects of the user's query, providing a well-rounded and thorough solution that enhances the overall effectiveness and relevance of the response.",
+    "The assistant's response demonstrates strong contextual relevance by tailoring the content to the specific company or industry mentioned in the user's query, ensuring the response addresses the unique aspects of the situation rather than providing generic or overly broad answers.",
+    "The assistant's response demonstrates accurate estimation and provides directly relevant, specific data that aligns with the user's implicit request for detailed and actionable information, ensuring the response is both informative and practically useful.",
+    "The assistant's response enhances user engagement and emotional resonance by contextualizing responsibilities within a narrative framework that emphasizes the overarching goals and impacts of the described role, thereby making the information more relatable and memorable.",
+    "The assistant's response demonstrates role-specific comprehensiveness by including both proactive and reactive responsibilities, ensuring a well-rounded description that accurately reflects the multifaceted nature of the position.",
+    "The assistant's response ensures role-specific depth and breadth by comprehensively detailing both proactive and reactive responsibilities, offering a balanced and thorough description that aligns with the multifaceted nature of the position.",
+    "The assistant's response demonstrates a higher level of imaginative and narrative complexity by introducing unique and engaging elements that enhance the storytelling potential and audience appeal, ensuring a more compelling and memorable plot idea.",
+    "The assistant's response demonstrates foundational relevance by emphasizing the essential prerequisites that are critical for building a comprehensive understanding of the complex concept, ensuring that the user is equipped with the necessary knowledge to approach the topic effectively.",
+    "The assistant's response demonstrates a prioritization of foundational and directly relevant concepts over broader or less directly applicable topics, ensuring the user gains a focused and efficient learning pathway tailored to the specific complex concept in question.",
+    "The assistant's response demonstrates direct applicability by emphasizing specific tools, techniques, or models that are essential for mastering the complex concept, ensuring the user gains practical and actionable insights directly relevant to their learning goal.",
+    "The assistant's response demonstrates comprehensive coverage and originality by including a diverse range of subtopics that address various facets of the topic, ensuring a well-rounded and insightful answer that aligns with the user's intent.",
+    "The assistant's response demonstrates enhanced user comprehension by organizing information in a structured, non-repetitive manner that facilitates logical progression and easy readability, ensuring the user can quickly grasp and navigate the provided subtopics.",
+    "The assistant's response demonstrates domain-specific appropriateness by selecting subtopics that accurately represent the core components and practical applications of the field in question, ensuring relevance and usefulness for the intended audience.",
+    "The assistant's response demonstrates thematic depth and diversity by providing a range of relevant adjectives that thoroughly explore the core concept of the user's query, ensuring comprehensive coverage and alignment with the user's intent.",
+    "The assistant's response demonstrates effective variety and non-repetition by providing a diverse range of relevant adjectives that avoid unnecessary duplication, ensuring clarity and user engagement without compromising on the completeness of the solution.",
+    "The assistant's response demonstrates optimal balance between completeness and conciseness by providing a sufficient variety of relevant information without unnecessary repetition or redundancy, ensuring clarity and user engagement while aligning with the task's requirements.",
 ]
 
+depth_iter_2 = [
+ "Please act as an impartial judge and evaluate the quality of the responses provided by two AI assistants to the user question displayed below. Your evaluation should focus on whether the assistant's answer effectively solves the problem posed by the user. Follow these steps:\n\n1. **Understand the Problem**: Carefully read the user's question to grasp the core issue or request.\n2. **Assess Relevance**: Determine if the assistant's response directly addresses the user's question without straying from the topic.\n3. **Evaluate Completeness**: Check if the response provides a comprehensive solution or answer, covering all necessary aspects of the problem.\n4. **Check Clarity**: Ensure the response is clear, concise, and easy to understand.\n5. **Verify Accuracy**: Confirm that the information provided is accurate and free from errors.\n6. **Determine Practicality**: Assess whether the solution is practical and actionable for the user.\n\n**Output your final verdict by strictly following this format**: \"[[A]]\" if assistant A's answer more effectively solves the problem, \"[[B]]\" if assistant B's answer more effectively solves the problem, and \"[[C]]\" if both answers are equally effective.",
+ "Please act as an impartial judge and evaluate the quality of the responses provided by two AI assistants to the user question displayed below. Follow these steps:\n\n1. **Identify Instructions**: First, analyze the user's question to determine if it includes any specific instructions regarding answer format, answer requirements, role-playing, or other constraints.\n2. **Evaluate Compliance**: For each assistant's response, check whether it strictly adheres to the identified instructions. Note any deviations or failures to follow the instructions.\n3. **Assess Quality**: Beyond compliance, evaluate the overall quality of each response, including accuracy, clarity, relevance, and helpfulness.\n4. **Final Verdict**: Output your final verdict by strictly following this format: \"[[A]]\" if assistant A is better, \"[[B]]\" if assistant B is better, and \"[[C]]\" for a tie. Base your verdict on both compliance with instructions and overall quality.\n\n**Output your final verdict by strictly following this format**: \"[[A]]\" if assistant A is better, \"[[B]]\" if assistant B is better, and \"[[C]]\" for a tie.",
+ "Please act as an impartial judge and evaluate the quality of the responses provided by two AI assistants to the user question displayed below. Your evaluation should focus on whether the assistant's answer is directly related to the question and not irrelevant. Follow these steps:\n\n1. **Understand the Question**: Read the user's question carefully to grasp its intent and requirements.  \n2. **Assess Relevance**: For each assistant's response, determine if the content directly addresses the question or strays into unrelated topics.  \n3. **Compare Responses**: Based on relevance, decide which assistant provides a more pertinent answer. If both are equally relevant or irrelevant, note this.  \n4. **Final Verdict**: Output your judgment strictly using the format: \"[[A]]\" if assistant A is better, \"[[B]]\" if assistant B is better, and \"[[C]]\" for a tie.  \n\n**Key Criterion**: The assistant's answer must be clearly related to the question; irrelevance should penalize the response.  \n\n**Output your final verdict by strictly following this format**: \"[[A]]\" if assistant A is better, \"[[B]]\" if assistant B is better, and \"[[C]]\" for a tie.",
+ "Please act as an impartial judge and evaluate whether the assistant's response provides sufficient necessary information to answer the user question displayed below. Follow these steps:\n\n1. **Understand the Question**: Carefully read the user's question to identify the key information required for a complete answer.\n2. **Assess the Response**: Evaluate the assistant's response to determine if it includes all essential details needed to fully address the user's query.\n3. **Check for Completeness**: Ensure the response covers the main points without omitting critical information.\n4. **Determine Sufficiency**: Decide if the response meets the standard of providing sufficient necessary information.\n5. **Output Verdict**: If the response meets the standard, output \"[[A]]\". If it does not, output \"[[B]]\". If the response partially meets the standard but lacks some critical details, output \"[[C]]\". \n\n**Output your final verdict by strictly following this format**: \"[[A]]\" if the response provides sufficient necessary information, \"[[B]]\" if it does not, and \"[[C]]\" if it partially meets the standard.",
+ "Please act as an impartial judge and evaluate the quality of the responses provided by two AI assistants to the user question displayed below. Focus on determining whether the assistant's response contains unnecessary redundant information. Follow these steps:\n\n1. **Identify Redundancy**: Check if the response repeats the same information or ideas without adding value.\n2. **Assess Relevance**: Ensure all information provided is directly relevant to the user's question.\n3. **Evaluate Conciseness**: Determine if the response is concise and avoids unnecessary elaboration.\n4. **Compare Responses**: Compare the two responses based on the above criteria.\n\n**Output your final verdict by strictly following this format**: \"[[A]]\" if assistant A is better (less redundant), \"[[B]]\" if assistant B is better (less redundant), and \"[[C]]\" for a tie.",
+ "Please act as an impartial judge and evaluate the quality of the responses provided by two AI assistants to the user question displayed below. Focus on assessing whether the assistant's response contains tedious or repetitive content. Follow these steps:\n\n1. **Read the user's question carefully.**\n2. **Review each assistant's response thoroughly.**\n3. **Identify any instances of tediousness or repetitiveness in the responses.**\n4. **Compare the responses based on the absence of tedious or repetitive content.**\n5. **Output your final verdict by strictly following this format**: \"[[A]]\" if assistant A's response is less tedious or repetitive, \"[[B]]\" if assistant B's response is less tedious or repetitive, and \"[[C]]\" if both responses are equally free from tedious or repetitive content.",
+ "Please act as an impartial judge and evaluate the quality of the responses provided by two AI assistants to the user question displayed below. Your evaluation should focus on verifying whether the information mentioned in each assistant's response is factually accurate and free from any inconsistencies or fabricated information. Follow these steps:\n\n1. **Review the user's question** to understand the context and the information being sought.\n2. **Examine each assistant's response** carefully, checking for any statements that contradict known facts or appear to be fabricated.\n3. **Cross-verify factual claims** using reliable sources if necessary, to ensure accuracy.\n4. **Determine if either response contains inaccuracies or fabricated information**.\n5. **Output your final verdict** by strictly following this format: \"[[A]]\" if assistant A's response is factually accurate and free from inconsistencies, \"[[B]]\" if assistant B's response is factually accurate and free from inconsistencies, and \"[[C]]\" if both responses are equally accurate or inaccurate. If one response is factually accurate while the other is not, choose the accurate one. If both contain inaccuracies, choose the one with fewer or less severe inaccuracies. If they are equally inaccurate, output \"[[C]]\"."
+]
+
+features_0629 = [
+    'Determine whether answering this question requires mathematical calculation skills.',
+    'Determine whether answering this question requires planning skills.',
+    'Determine whether answering this question requires reading comprehension skills.',
+    'Determine whether answering this question requires imagination.',
+    'Determine whether answering this question requires logical reasoning.',
+    'Determine whether answering this question requires language organization skills.',
+    'Determine whether answering this question requires data analysis.',
+    'Determine whether answering this question requires interdisciplinary integration skills.',
+    'Determine whether answering this question requires emotional recognition skills.',
+    'Determine whether answering this question requires cultural background knowledge.',
+    'Determine whether answering this question requires analogical transfer skills.',
+    'Determine whether answering this question requires ethical judgment skills.',
+    'Determine whether answering this question requires innovative thinking skills.',
+    'Determine whether answering this question requires multitasking skills.',
+    'Determine whether answering this question requires critical thinking.',
+    'Determine whether answering this question requires information retrieval.',
+    'Determine whether answering this question requires interpersonal skills.',
+    'Determine whether answering this question requires user experience design skills.',
+    'Determine whether answering this question requires policy interpretation skills.',
+    'Determine whether answering this question requires time management skills.',
+]
 
 
 init_for_pair = [
@@ -334,6 +407,14 @@ p_for_feature = '''\
 
 现在你需要判断：{feature}
 你的回答只能是 "YES" 或 "NO"，不需要其它任何解释。
+'''
+
+p_for_features_0629 = '''\
+This is a question raised by a human to an AI assistant: {{question}}
+
+Your task is: {feature}
+
+Please output an integer score between 0 and 5 as the judgment result, where 0 means completely unnecessary, and the higher the score, the more necessary it is. You only need to directly output the score without any explanation.
 '''
 
 def get_feature(feature):
@@ -424,25 +505,32 @@ prompt_score_user = '''\
 [The End of the Assistant’s Answer]
 '''
 
-def get_m_origin(sys_prompt, default_score_map=None, max_tokens=800):
+def get_m_origin(sys_prompt, default_score_map=None, max_tokens=800, only_sys_prompt=False):
     def baseline(self, c):
         # print(c['id'])
-        if is_score:
+        if only_sys_prompt:
             i = [
-                {"role": "system", "content": sys_prompt},
+                {"role": "system", "content": sys_prompt.format(question=c['question'], answer=c['output'])},
+            ]
+            output = self.model.get_outputs([i], max_tokens=max_tokens)[0].message.content
+            score_map = default_score_map
+            r = get_score(score_map, output)
+        elif is_score:
+            i = [
+                {"role": "system", "content": sys_prompt.format(question=c['question'])},
                 {"role": "user", "content": prompt_score_user.format(question=c['question'], answer=c['output'])},
             ]
             output = self.model.get_outputs([i], max_tokens=max_tokens)[0].message.content
-            score_map = default_score_map or {f'[[{i}]]': i for i in range(1, 6)}
+            score_map = default_score_map or {f'[{i}]': i for i in range(1, 6)}
             r = get_score(score_map, output)
         else:
             i = [
-                {"role": "system", "content": sys_prompt},
+                {"role": "system", "content": sys_prompt.format(question=c['question'])},
                 {"role": "user", "content": prompt_user.format(question=c['question'], answer_a=c['output'][0], answer_b=c['output'][1])},
             ]
             # output = self.model.get_outputs([i], max_tokens=1024)[0].message.content
             output = self.model.get_outputs([i], max_tokens=max_tokens)[0].message.content
-            score_map = default_score_map or {'[[A]]': 1, '[[B]]': -1, '[[C]]': 0}
+            score_map = default_score_map or {'[A]': 1, '[B]': -1, '[C]': 0}
             r = get_score(score_map, output)
         return r
     return baseline
@@ -472,8 +560,23 @@ features = {
 stat_features = {}
 
 def ref_features():
-    def fill_none(self, c):
-        return None
+    
+    if is_score:
+        features['metrics'].append((f'baseline_score', get_m_origin(prompt_score_system_baseline)))
+        stat_features[f'baseline_score'] = ''
+    else:
+        features['metrics'].append((f'baseline_pandalm', baseline_pandalm))
+        features['metrics'].append((f'baseline_0208', get_m_origin(baseline_prompt_0208))) # judgeLM
+        features['metrics'].append((f'baseline', get_m_origin(baseline_prompt_pair_cot, max_tokens=1000))) # judgeLM with cot
+        # features['metrics'].append((f'baseline_wo_tie_0208', get_m_origin(baseline_prompt_wo_tie_0208, default_score_map={'[A]': 1, '[B]': -1})))
+        stat_features[f'baseline_pandalm'] = ''
+        stat_features[f'baseline_0208'] = ''
+        stat_features[f'baseline'] = ''
+        # stat_features[f'baseline_wo_tie_0208'] = ''
+
+    if only_baseline:
+        return
+
     for i in range(len(init_metrics)):
         m = init_metrics[i]  
         features['metrics'].append((f'0115_{i}', get_m(m)))
@@ -484,9 +587,19 @@ def ref_features():
         features['metrics'].append((f'0115_features_{i}', get_feature(m)))
         stat_features[f'0115_features_{i}'] = m
         # features['metrics'].append((f'0115_features_{i}', fill_none))
-    for k, v in debias_features.items():
-        features['metrics'].append((f'0115_debias_features_{k}', get_m_origin(v, default_score_map={'YES': 1, 'NO': 0})))
-        stat_features[f'0115_debias_features_{k}'] = v
+    for i in range(len(type_features)):
+        m = type_features[i]
+        features['metrics'].append((f'0115_type_features_{i}', get_feature(m)))
+        stat_features[f'0115_type_features_{i}'] = m
+    for i in range(len(features_0629)):
+        m = features_0629[i]
+        features['metrics'].append((f'0115_features_0629_{i}', get_m_origin(p_for_features_0629.format(feature=m), only_sys_prompt=True, max_tokens=64, default_score_map={f'{i}': i for i in range(6)})))
+        stat_features[f'0115_features_0629_{i}'] = m
+
+    if ultra or get_stat_features:
+        for k, v in debias_features.items():
+            features['metrics'].append((f'0115_debias_features_{k}', get_m_origin(v, default_score_map={'YES': 1, 'NO': 0})))
+            stat_features[f'0115_debias_features_{k}'] = v
     if not is_score or get_stat_features:
         for i in range(len(init_template)):
             m = init_template[i]
@@ -494,16 +607,12 @@ def ref_features():
             stat_features[f'0115_template_{i}'] = m
         for i in range(len(pair_score_metircs)):
             m = pair_score_metircs[i]
-            features['metrics'].append((f'0115_pair_score_{i}', get_m_origin(prompt_score_pair_system.format(metric=m), default_score_map={f'[[{i}]]': i for i in range(-5, 6)})))
+            features['metrics'].append((f'0115_pair_score_{i}', get_m_origin(prompt_score_pair_system.format(metric=m), default_score_map={f'[{i}]': i for i in range(-5, 6)})))
             stat_features[f'0115_pair_score_{i}'] = m
-        features['metrics'].append((f'baseline_pandalm', baseline_pandalm))
-        features['metrics'].append((f'baseline_0208', get_m_origin(baseline_prompt_0208)))
-        features['metrics'].append((f'baseline', get_m_origin(baseline_prompt_pair_cot, max_tokens=1000)))
-        features['metrics'].append((f'baseline_wo_tie_0208', get_m_origin(baseline_prompt_wo_tie_0208, default_score_map={'[[A]]': 1, '[[B]]': -1})))
-        stat_features[f'baseline_pandalm'] = ''
-        stat_features[f'baseline_0208'] = ''
-        stat_features[f'baseline'] = ''
-        stat_features[f'baseline_wo_tie_0208'] = ''
+        for k, m in pair_score_metircs_2.items():
+            name = f'0115_pair_score_2_{k}'
+            features['metrics'].append((name, get_m_origin(prompt_score_pair_system.format(metric=m), default_score_map={f'[{i}]': i for i in range(-5, 6)})))
+            stat_features[name] = m
         if ultra or get_stat_features:
             for i in range(len(init_metrics_2)):
                 m = init_metrics_2[i]
@@ -521,9 +630,11 @@ def ref_features():
                 m = iter_2[i]
                 features['metrics'].append((f'0115_ultra_iter_2_{i}', get_m(m)))
                 stat_features[f'0115_ultra_iter_2_{i}'] = m
+            for i in range(len(depth_iter_2)):
+                m = depth_iter_2[i]
+                features['metrics'].append((f'0115_ultra_depth_iter_2_{i}', get_m_origin(m)))
+                stat_features[f'0115_ultra_depth_iter_2_{i}'] = m
             
-    if is_score:
-        features['metrics'].append((f'baseline_score', get_m_origin(prompt_score_system_baseline)))
 
 if get_stat_features:
     ref_features()
@@ -547,7 +658,7 @@ def d_f(question, better, worse, origin_score):
     ]
     output = model.get_outputs([i], max_tokens=1024)[0].message.content
     score_map = {
-        '[[A]]': 1, '[[B]]': -1, '[[C]]': 0
+        '[A]': 1, '[B]': -1, '[C]': 0
     }
     r = None
     for k, s in score_map.items():
@@ -577,6 +688,11 @@ for i in range(epoch):
     ref_features()
     get_eval_res(features)
 
+    combined_content = []
+    for dataset in datasets:
+        combined_content += dataset.content
+    datasets.append(Dataset('combined', combined_content, None))
+    
     for dataset in datasets:
         # content = dataset.content
         # dataset.content = [x for x in dataset.content if 'metrics' in x and x['metrics'] is not None and x['metrics'].get('baseline')]
@@ -608,8 +724,13 @@ for i in range(epoch):
         # cot, deta1, n = get_cot_deta1(Y, baseline_pred)
         # print(f'Baseline Cot: {cot/n:.3f}, Deta<=1: {deta1/n:.3f}')
         # print(f'Baseline spearmanr: {spearmanr(baseline_pred, Y)[0]:.3f}, kendalltau: {kendalltau(baseline_pred, Y)[0]:.3f}')
-        # summary.metrics_regression.Summary().print_summary(dataset)
-        summary.metrics_regression.Summary().print_summary(dataset, metric_names=[k for k in stat_features.keys() if not k.startswith('0115_ultra_iter_2_')])
+        summary.metrics_regression_2.Summary().print_summary(dataset)
+        # print(stat_features)
+
+        # print([k for k in stat_features.keys() if 'features' not in k])
+        # summary.metrics_regression.Summary().print_summary(dataset, metric_selector=lambda x: 'features' not in x)
+        # summary.metrics_regression.Summary().print_summary(dataset, metric_selector=lambda x: 'ultra' not in x)
+        # summary.metrics_regression.Summary().print_summary(dataset, metric_names=[k for k in stat_features.keys() if not k.startswith('0115_ultra_iter_2_')])
         print()
         
 
